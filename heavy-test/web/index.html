@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+
+    <!-- Generated javascript library includes -->
+    <script type="application/javascript" src="./testLib.min.js"></script>
+    <style>
+    .cell {
+      display: table-cell;
+      padding-right: 10px;
+    }
+
+    .row {
+      display: table-row;
+    }
+
+    </style>
+
+    <script type="text/javascript">
+      var isPlaying = false;
+      var webAudioContext = null;
+      var webAudioProcessor = null;
+      var test = null;
+
+      window.onload = function(e) {
+
+        webAudioContext = new (window.AudioContext || window.webkitAudioContext);
+
+        blockSize = 2048
+
+        test = new testLib({
+          sampleRate: webAudioContext.sampleRate,
+          blockSize: blockSize,
+          printHook: hvPrintHook,
+          sendHook: hvSendHook
+        });
+
+        webAudioProcessor = webAudioContext.createScriptProcessor(
+          blockSize,
+          test.getNumInputChannels(),
+          // Note: make sure there is at least one output channel specified so that
+          // we can process patches that have no i/o objects (i.e. control only)
+          Math.max(test.getNumOutputChannels(), 1)
+        );
+
+        webAudioProcessor.onaudioprocess = function(e) { test.process(e); }
+
+        document.getElementById("transportButton").textContent = "Play";
+        isPlaying = false;
+
+        // Samples to load into Heavy tables
+        var toLoad = [
+          ["audio/A-bass.mp3", "A-bass"]
+        ];
+
+        numberToDecode = toLoad.length;
+
+        toLoad.forEach(function(e) {
+          loadAudio(e[0],e[1]);
+        });
+
+      };
+
+      function hvPrintHook(message) {
+        console.log(message);
+      };
+
+      function hvSendHook(message) {
+        console.log(message);
+      };
+
+      function start() {
+        webAudioProcessor.connect(webAudioContext.destination);
+        document.getElementById("transportButton").textContent = "Pause";
+        isPlaying = true;
+      };
+
+      function stop() {
+        webAudioProcessor.disconnect(webAudioContext.destination);
+        document.getElementById("transportButton").textContent = "Play";
+        isPlaying = false;
+      };
+
+      function toggleTransport(element) {
+        (isPlaying) ? stop() : start();
+      };
+
+      // Sample loading
+      var decodedTable = {};
+
+      function loadHRIR(value) {
+        if (value<10) {
+          value="00"+value;
+        }else if(value<100){
+          value="0"+value;
+        }
+        loadAudio("IRC_1018_C/IRC_1018_C_R0195_T"+value+"_P000.wav", "IR")
+      }
+
+      function sendToHeavy(name, buffer, sampleName) {
+        var leftTable = test.getTableForName(sampleName+"-1");
+        leftTable.setBufferWithData(buffer.getChannelData(0));
+        var rightTable = test.getTableForName(sampleName+"-2");
+        rightTable.setBufferWithData(buffer.getChannelData(1));
+        console.log('Setting '+leftTable+' with '+buffer);
+        console.log('Setting§ '+rightTable+' with '+buffer);     
+      }
+
+      function decodingFinished(name, decodedBuffer, sampleName) {
+        decodedTable[name] = decodedBuffer;
+        if (numberToDecode == 0) {
+          for (var name in decodedTable) {
+            console.log("sending " + name + " to heavy");
+            sendToHeavy(name, decodedTable[name], sampleName);
+          }
+        }
+      }
+
+      function loadAudio(url, sampleName) {
+        // url = "audio/"+sampleName+".mp3";
+        var rq = new XMLHttpRequest();
+        rq.open("GET", url, true);
+        rq.responseType = "arraybuffer";
+        rq.send();
+
+        rq.onload = function() {
+          var audioData = rq.response;
+          webAudioContext.decodeAudioData(audioData, function(buffer){
+            console.log("Finished loading "+url);
+            numberToDecode--;
+            decodingFinished(url, buffer, sampleName);
+          });
+        }
+      }
+
+      
+    </script>
+  </head>
+
+  <body>
+    <div>
+
+      <div>
+        <button style="padding: 10px;" type="button" id="transportButton" onclick="toggleTransport(this);"/>
+      </div>
+
+      <input id="azimuthSlider" type="range" min="0" max="345" step="15" value="0" oninput="loadHRIR(value)">
+      
+      <div>
+        <p style="padding: 10px;"><em>powered by </em><a href="https://enzienaudio.com"><strong>Heavy</strong></a></p>
+      </div>
+
+    </div>
+  </body>
+</html>
