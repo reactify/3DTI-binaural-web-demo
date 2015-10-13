@@ -1,0 +1,317 @@
+/* imports */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\000031}}
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  outline: 0;
+  color: inherit;
+  text-decoration: none;
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000312}}
+html {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000317}}
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  font-family: "Helvetica Neue" Arial sans-serif;
+  letter-spacing: 0.1em;
+  color: #a9bfc7;
+  background-color: #c8d6db;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000330}}
+body > input {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000335}}
+img {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000341}}
+hr {
+  border-top: 1px solid #9ab4bd;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000345}}
+u {
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000350}}
+.fallback a, article a {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000358}}
+ul li {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000363}}
+blockquote {
+  font-style: italic;
+  padding: 0 2rem;
+  opacity: 0.5;
+  border-left: 2px solid #a9bfc7;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000370}}
+center {
+  background: red;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000374}}
+iframe {
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000379}}
+p:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000384}}
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000389}}
+h3 {
+  font-size: inherit;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/_global\.scss}line{font-family:\0000397}}
+input {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* extends */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\000031}}
+#buttonOverlay {
+  opacity: 0;
+  transition: opacity 0.2s;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  background-color: #9ab4bd;
+  pointer-events: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\000037}}
+#buttonOverlay.visible {
+  opacity: 0.8;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000327}}
+.anim .circle {
+  -webkit-transform-origin: 50% 50%;
+  fill: none;
+  stroke: white;
+  stroke-width: 3px;
+  vector-effect: non-scaling-stroke;
+  -webkit-animation: scaleUp 2.5s infinite;
+  -webkit-animation-fill-mode: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(0) {
+  -webkit-animation-delay: 0s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(1) {
+  -webkit-animation-delay: 0.2s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(2) {
+  -webkit-animation-delay: 0.4s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(3) {
+  -webkit-animation-delay: 0.6s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(4) {
+  -webkit-animation-delay: 0.8s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(5) {
+  -webkit-animation-delay: 1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(6) {
+  -webkit-animation-delay: 1.2s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(7) {
+  -webkit-animation-delay: 1.4s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(8) {
+  -webkit-animation-delay: 1.6s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(9) {
+  -webkit-animation-delay: 1.8s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000341}}
+.anim .circle:nth-of-type(10) {
+  -webkit-animation-delay: 2s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000348}}
+.button-0 .anim .circle {
+  stroke: #e54ac7;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000352}}
+.button-1 .anim .circle {
+  stroke: #d6af00;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000356}}
+.button-2 .anim .circle {
+  stroke: #464a4f;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_fx\.scss}line{font-family:\0000360}}
+.button-3 .anim .circle {
+  stroke: #46cb4f;
+}
+
+@-webkit-keyframes scaleUp {
+  0% {
+    -webkit-transform: scale(0.2);
+  }
+  100% {
+    -webkit-transform: scale(2);
+  }
+}
+@-moz-keyframes scaleUp {
+  0% {
+    -webkit-transform: scale(0.2);
+  }
+  100% {
+    -webkit-transform: scale(2);
+  }
+}
+@-ms-keyframes scaleUp {
+  0% {
+    -webkit-transform: scale(0.2);
+  }
+  100% {
+    -webkit-transform: scale(2);
+  }
+}
+@keyframes scaleUp {
+  0% {
+    -webkit-transform: scale(0.2);
+  }
+  100% {
+    -webkit-transform: scale(2);
+  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\000032}}
+#buttonContainer {
+  position: absolute;
+  top: 20%;
+  left: 0px;
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000314}}
+.btn {
+  position: relative;
+  width: 44%;
+  height: 44%;
+  margin-left: 4%;
+  margin-top: 4%;
+  float: left;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.5);
+  opacity: 0.5;
+  transition: opacity 0.5s;
+  z-index: 10;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000336}}
+.btn.enabled {
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000342}}
+.btn.clicked {
+  z-index: 1000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000347}}
+.btn .label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #acb9bf;
+  background-size: 80% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000366}}
+.btn#btn0.enabled .label {
+  background-image: url("../images/pink.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000369}}
+.btn#btn0 .label {
+  background-image: url("../images/pink-off.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000375}}
+.btn#btn1.enabled .label {
+  background-image: url("../images/gold.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000378}}
+.btn#btn1 .label {
+  background-image: url("../images/gold-off.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000385}}
+.btn#btn2.enabled .label {
+  background-image: url("../images/black.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000388}}
+.btn#btn2 .label {
+  background-image: url("../images/black-off.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000395}}
+.btn#btn3.enabled .label {
+  background-image: url("../images/green.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\0000398}}
+.btn#btn3 .label {
+  background-image: url("../images/green-off.svg");
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_001_TOA_TriggerHappy\/TOA_TriggerHappy\/web\/src\/scss\/ui\/_buttons\.scss}line{font-family:\00003105}}
+.btn .anim {
+  position: absolute;
+  width: 500%;
+  height: 500%;
+  left: -200%;
+  top: -200%;
+  pointer-events: none;
+}

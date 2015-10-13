@@ -1,0 +1,33 @@
+{
+  "name": "simple-paddle3",
+  "subdomain": "reactify.simple-paddle3",
+  "scripts": {
+    "start": "app.js"
+  },
+  "version": "0.0.0-47",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "browserify": "",
+    "coffee-script": "",
+    "coffeeify": "",
+    "fieldkit": "",
+    "grunt": "~0.4.4",
+    "grunt-concurrent": "",
+    "grunt-contrib-coffee": "^0.13.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-exec": "",
+    "grunt-http-server": "",
+    "grunt-nodemon": "~0.2.1",
+    "gsap": "",
+    "jquery": "",
+    "load-grunt-tasks": "",
+    "midi": "",
+    "node-sass": "",
+    "node-static": "",
+    "osc-min": "",
+    "socket.io": "*",
+    "three": "^0.71.0"
+  }
+}

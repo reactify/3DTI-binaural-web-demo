@@ -1,0 +1,52 @@
+#instructions {
+
+	display:none;
+	
+	position: absolute;
+	top:0px;
+	left:20%;
+	width: 60%;
+	height: 100%;
+
+	background-color:transparentize($grey, 0.2);
+
+	z-index:9999;
+
+	pointer-events:none;
+
+	#logo {
+		margin-top:100%;
+		width:90%;
+		height:auto;
+		margin-left:auto;
+		margin-right:auto;
+
+		padding:1em;
+		
+
+	}
+
+	ul {
+
+		text-align: center;
+		position: absolute;
+		width: 90%;
+		color:black;
+
+		margin-left:1em;
+		margin-right:1em;
+
+		li {
+			margin-right:1em;
+			padding-top: 1em;
+		}
+	}
+
+	transition:transform 0.2s linear;
+	transition-delay: 2s;
+
+	.connected & {
+		transform:translateY(-100%);
+	}
+
+}

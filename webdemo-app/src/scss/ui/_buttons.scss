@@ -1,0 +1,221 @@
+
+$controller-width:100%;
+
+#buttonContainer {
+
+	position: absolute;
+	top:(100% - $controller-width)/4;
+	left:0px;
+	width: $controller-width;
+	margin-left:(100% - $controller-width)/2;
+
+	// border:1px solid red;
+}
+
+$button-margin:4%;
+
+.btn {
+
+	position: relative;
+	
+	width:50% - ($button-margin*1.5);
+	height:50% - $button-margin*1.5;
+	margin-left:$button-margin;
+	margin-top:$button-margin;
+	// margin-left:4%;
+	// margin-right:4%;
+	// margin-bottom: 4%;
+	// margin-top: 4%;
+	float:left;
+
+	cursor:pointer;
+
+	&.oneShot {
+		width: 100% - ($button-margin*2);
+		height:$button-margin*4;
+		.label {
+			background-size:auto 80%;
+		}
+		
+	}
+
+
+	box-shadow: 0px 2px 5px rgba(255,255,255,0.5);
+
+	// enabled / disabled states
+	opacity: 0.5;
+	transition:opacity 0.5s;
+	&.enabled {
+		opacity: 1;
+	}
+
+	// clicked / unclicked states
+	z-index:10;
+	&.clicked {
+		z-index: 1000;
+		box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+	}
+
+	.label {
+
+		position: absolute;
+		top:0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+
+		background-color:$button-background;
+		background-size:80% auto;
+		background-position:center center;
+		background-repeat:no-repeat;
+	}
+
+
+	
+
+	&#btn0 {
+
+		&.enabled .label{
+			background-image:url('../images/pink.svg');
+		}
+		.label {
+			background-image:url('../images/pink-off.svg');
+		}
+	}
+
+	&#btn1 {
+		&.enabled .label{
+			background-image:url('../images/gold.svg');
+		}
+		.label {
+			background-image:url('../images/gold-off.svg');
+		}
+		
+	}
+
+	&#btn2 {
+		&.enabled .label{
+			background-image:url('../images/green.svg');
+		}
+		.label {
+			background-image:url('../images/green-off.svg');
+		}
+		
+	}
+
+	&#btn3 {
+		&.enabled .label{
+			background-image:url('../images/blue.svg');
+		}
+		.label {
+			background-image:url('../images/blue-off.svg');
+		}
+		
+	}
+
+	&#btn4 {
+		&.enabled .label{
+			background-image:url('../images/black.svg');
+		}
+		.label {
+			background-image:url('../images/black-off.svg');
+		}
+		
+	}
+
+	&#btn5 {
+		&.enabled .label{
+			background-image:url('../images/grey.svg');
+		}
+		.label {
+			background-image:url('../images/grey-off.svg');
+		}
+		
+	}
+
+	&.oneShot {
+		&.enabled .label{
+			background-image:url('../images/long.svg');
+		}
+		.label {
+			background-image:url('../images/long-off.svg');
+		}
+		
+	}
+
+
+	.anim {
+		position: absolute;
+		width:500%;
+		height:500%;
+		left:-200%;
+		top:-200%;
+		pointer-events:none;
+	}
+
+	.circleContainer {
+
+		position: absolute;
+		top:0px;
+		left:0px;
+		width: 100%;
+		height: 100%;
+
+		.circle {
+			position: absolute;
+
+			display: none;
+
+			top:0px;
+			left:0px;
+			width: 100%;
+			height: 100%;
+
+			border-radius:50%;
+			border:1px solid white;
+
+			-webkit-transform-origin: 50% 50%;
+
+			-webkit-animation:scaleUp 1s infinite linear;
+			-webkit-animation-fill-mode: both;
+
+			@for $i from 0 through 5 {
+				&:nth-of-type(#{$i}) {
+					-webkit-animation-delay:#{$i/5}s;
+				}
+			}
+
+			
+		}
+
+	}
+
+	&.clicked .circle {
+		display: block;
+	}
+
+	&#btn0 .circle {
+		border-color : $pink;
+	}
+
+	&#btn1 .circle {
+		border-color : $gold;
+	}
+
+	&#btn2 .circle {
+		border-color : $green;
+	}
+
+	&#btn3 .circle{
+		border-color : $blue;
+	}
+
+	&#btn4 .circle {
+		border-color : $black;
+	}
+
+	&#btn5 .circle{
+		border-color : $pipeGrey;
+	}
+
+}

@@ -1,0 +1,30 @@
+$base:						2rem;
+$break:						460px;
+$border-size:				2px;
+
+$white:						#ffffff;
+$black:						#000000;
+$blue:						#0000ff;
+$grey:						lighten(#d6d6d6, 10%);
+$grey-dark:					darken($grey,10%);
+$grey-darker:				darken($grey-dark,5%);
+$grey-darkest:				darken($grey-darker,35%);
+$grey-light:				lighten($grey,10%);
+$grey-lighter:				lighten($grey-light,5%);
+
+$button-background:			lighten(#acb9bf, 10%);
+
+$pink:						#e54ac7;
+$gold:						#d6af00;
+$black:						#464a4f;
+$green:						#40a63b;
+$blue:						#2aafff;
+$pipeGrey:					#bdb8bb;
+
+
+
+/* imports */
+
+@import "mixins";
+@import "global";
+@import "fonts";

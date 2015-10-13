@@ -1,0 +1,112 @@
+/* imports */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\000031}}
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  outline: 0;
+  color: inherit;
+  text-decoration: none;
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000312}}
+html {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000317}}
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  font-family: "Helvetica Neue" Arial sans-serif;
+  letter-spacing: 0.1em;
+  color: #d6d6d6;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000330}}
+body > input {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000335}}
+img {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000341}}
+hr {
+  border-top: 1px solid #c9c9c9;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000345}}
+u {
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000350}}
+.fallback a, article a {
+  color: #2aafff;
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000358}}
+ul li {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000363}}
+blockquote {
+  font-style: italic;
+  padding: 0 2rem;
+  opacity: 0.5;
+  border-left: 2px solid #d6d6d6;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000370}}
+center {
+  background: red;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000374}}
+iframe {
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000379}}
+p:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000384}}
+h2 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000389}}
+h3 {
+  font-size: inherit;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/_global\.scss}line{font-family:\0000397}}
+input {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* extends */
