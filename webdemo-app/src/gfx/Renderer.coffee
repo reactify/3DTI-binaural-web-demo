@@ -6,7 +6,11 @@ class Renderer
 	constructor: ( container ) ->
 		@renderer = new THREE.WebGLRenderer { antialias: true }
 		@renderer.setClearColor 0xffffff, 1
-
+		@renderer.shadowMapEnabled = true
+		@renderer.shadowMapType = THREE.PCFSoftShadowMap
+		@renderer.physicallyBasedShading = true
+		@renderer.gammaInput = true
+		@renderer.gammeOutput = true
 
 		@glSettings = new GLSettings @renderer.context
 		#console.log @glSettings.capabilities
@@ -51,9 +55,29 @@ class Renderer
 
 		@resize()
 
-		# @cameraControls = new THREE.OrbitControls(@camera)
+
+		# @depthShader = THREE.ShaderLib["depthRGBA"]
+		# @depthUniforms = THREE.UniformsUtils.clone(@depthShader.uniforms)
+
+		# @depthMaterial = new THREE.ShaderMaterial( { fragmentShader : @depthShader.fragmentShader, vertexShader : @depthShader.vertexShader, uniforms : @depthUniforms })
 
 		# @composer = new THREE.EffectComposer(@renderer)
+		# @renderPass = new THREE.RenderPass @scene, @camera
+		# # @renderPass.renderToScreen = true
+		# @composer.addPass @renderPass
+
+		# # @cameraControls = new THREE.OrbitControls(@camera)
+
+		# @depthTarget = new THREE.WebGLRenderTarget( 512, 512, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat } )
+				
+		# @ssaoEffect = new THREE.ShaderPass( THREE.SSAOShader )
+		# @ssaoEffect.uniforms[ 'tDepth' ].value = @depthTarget
+		# @ssaoEffect.uniforms[ 'size' ].value.set( 512, 512 )
+		# @ssaoEffect.uniforms[ 'cameraNear' ].value = @camera.near
+		# @ssaoEffect.uniforms[ 'cameraFar' ].value = @camera.far
+		# @ssaoEffect.renderToScreen = true
+		# @composer.addPass( @ssaoEffect )
+
 
 		# @renderPass = new THREE.RenderPass(@scene, @camera)
 		# @renderPass.renderToScreen = true
@@ -74,10 +98,14 @@ class Renderer
 	render: ( scene=null ) ->
 
 		# @cameraControls.update()
-		
+
+		# scene.scene.overrideMaterial = @depthMaterial
+		# @renderer.render scene.scene, scene.camera, @depthTarget
+
+		# scene.scene.overrideMaterial = null
 		# @composer.render()
-		# @renderer.render scene.scene, @camera
-		@renderer.render scene.scene, scene.camera
+		@renderer.render scene.scene, @camera
+		# 
 
 	resize: () ->
 		r = RenderSettings.getRect()

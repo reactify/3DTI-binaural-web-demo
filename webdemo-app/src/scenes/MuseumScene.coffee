@@ -37,8 +37,13 @@ class MuseumScene extends Scene
 		@mapY = 0
 		@wallColliding = false
 
+		@reportPositionId = -1
+
 	init:(@mapURL)=>
 		super
+
+		# add atmospherics
+		@scene.fog = new THREE.Fog(0xffffff, 10, 10000)
 
 
 		# load map from JSON file
@@ -66,7 +71,7 @@ class MuseumScene extends Scene
 
 		@controls.enabled = true
 
-
+		@reportPositionId = setInterval(@reportUserPosition, 100)
 
 		super
 
@@ -86,15 +91,17 @@ class MuseumScene extends Scene
 		@scene.add @floor
 
 		# create Walls
-		cube = new THREE.BoxGeometry(UNITSIZE, WALLHEIGHT, UNITSIZE)
+		wallCube = new THREE.BoxGeometry(UNITSIZE, WALLHEIGHT, UNITSIZE)
+		wallBase = new THREE.BoxGeometry(UNITSIZE * 1.1, WALLHEIGHT/20, UNITSIZE * 1.1)
 
 		wallMaterial = new THREE.MeshLambertMaterial({ color : 0xebebeb })
 
-		materialGround1 = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true, vertexColors: THREE.FaceColors, side: THREE.DoubleSided } )
+		materialGround1 = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true, vertexColors: THREE.FaceColors } )
+		materialGround1.side = THREE.DoubleSided
 		materialGround = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true,  vertexColors: THREE.FaceColors } )
 
 		materialGround.emissive.setHSL( 0, 0, 0.35 )
-		materialGround1.emissive.setHSL( 0, 0, 0.35 )
+		materialGround1.emissive.setHSL( 0, 0, 0.55 )
 
 
 		for x in [0..@mapData.length-1] by 1
@@ -102,13 +109,22 @@ class MuseumScene extends Scene
 				a = @mapData[x][y]
 				if a == "1"
 					# create wall here
-					newWall = new THREE.Mesh(cube, materialGround1)
-					newWall.position.x = (x - @mapWidth/2) * UNITSIZE
-					newWall.position.y = WALLHEIGHT/2
-					newWall.position.z = (y - @mapHeight/2) * UNITSIZE
+					wallUnit = new THREE.Object3D()
 
-					@scene.add newWall
-					@walls.push newWall
+					newWall = new THREE.Mesh(wallCube, materialGround1)
+					wallUnit.add newWall
+
+					newWallBase = new THREE.Mesh(wallBase, materialGround1)
+					wallUnit.add newWallBase
+					newWallBase.position.y = -WALLHEIGHT/2 + WALLHEIGHT/40
+
+					wallUnit.position.x = (x - @mapWidth/2) * UNITSIZE
+					wallUnit.position.y = WALLHEIGHT/2
+					wallUnit.position.z = (y - @mapHeight/2) * UNITSIZE
+
+
+					@scene.add wallUnit
+					@walls.push wallUnit
 				else if a != "0"
 					# create sound source here
 					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 5, 5), new THREE.MeshLambertMaterial({ color : 0xff0000 }))
@@ -119,14 +135,15 @@ class MuseumScene extends Scene
 					@soundSources.push newSource
 
 		# add lighting
-		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.7)
-		lightHemi.castShadow = true
+		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.6)
+		# lightHemi.castShadow = true
 		@scene.add lightHemi
 
-		light1 = new THREE.DirectionalLight(0xffffff, 1)
-		light1.position.set(0, WALLHEIGHT, 0)
+		light1 = new THREE.DirectionalLight(0x676767, 0.1)
+		light1.position.set(@mapWidth/2 * UNITSIZE,0,@mapWidth/2 * UNITSIZE)
+		light1.lookAt(new THREE.Vector3(@mapWidth/2 * -UNITSIZE,0,@mapWidth/2 * -UNITSIZE))
 		light1.castShadow = true
-		light1.onlyShadow = true
+		# light1.onlyShadow = true
 		@scene.add light1
 
 		# adjust camera
@@ -142,12 +159,18 @@ class MuseumScene extends Scene
 			when 32
 				document.body.requestPointerLock()
 
+		# clearInterval(@reportPositionId)
+		
+
 	onKeyUp:(e)=>
 		switch(e.keyCode)
 			when 38, 87 then @moving.forward = false
 			when 37, 65 then @moving.left = false
 			when 40, 83 then @moving.backward = false
 			when 39, 68 then @moving.right = false
+
+		# clearInterval(@reportPositionId)
+		# @reportUserPosition()
 
 	onMouseMove:(e)=>
 
@@ -194,7 +217,7 @@ class MuseumScene extends Scene
 		@mapX = Math.min(@mapHeight, Math.max(0, @mapX))
 		@mapZ = Math.min(@mapWidth, Math.max(0, @mapZ))
 
-		console.log "current map location = #{@mapX}, #{@mapZ}"
+		# console.log "current map location = #{@mapX}, #{@mapZ}"
 
 		if @mapData[@mapX][@mapZ] == "1"
 			console.warn "WALL"
@@ -210,6 +233,24 @@ class MuseumScene extends Scene
 
 		@controls.getObject().translateX(@velocity.x * 0.1)
 		@controls.getObject().translateZ(@velocity.z * 0.1)
+
+	reportUserPosition:()=>
+		positionX = ((@controls.getObject().position.x / UNITSIZE) + @mapWidth/2) / @mapWidth
+		positionZ = ((@controls.getObject().position.z / UNITSIZE) + @mapHeight/2) / @mapHeight
+
+
+		@emit "userPosition", { x : positionX, y : positionZ }
+
+		# angle
+		refVec = new THREE.Vector3(0,0,1)
+		refVec.applyEuler(@controls.getObject().rotation)
+		
+		angle = Math.floor(Math.atan(refVec.z / refVec.x) * (180 / Math.PI))
+		if refVec.x > 0 then angle -= 180
+		angle += 180
+		# console.log angle
+
+		@emit "userAngle", angle
 
 
 

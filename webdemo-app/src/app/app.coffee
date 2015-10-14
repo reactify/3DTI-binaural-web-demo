@@ -6,7 +6,7 @@ MuseumScene = require "../scenes/MuseumScene.coffee"
 # DisplaySocketHandler = require "../display/DisplaySocketHandler.coffee"
 
 DebugView = require "../debug/DebugView.coffee"
-
+MapView = require "../mapView/MapView.coffee"
 
 class TuneInApp
 	constructor:()->
@@ -18,6 +18,8 @@ class TuneInApp
 
 		@renderer = new Renderer $ "renderer"
 		@scene = new MuseumScene()
+
+		@map = new MapView($("map"))
 
 		@loaded = false
 
@@ -34,6 +36,13 @@ class TuneInApp
 
 
 	onSceneLoaded:()=>
+
+		@map.init(@scene.mapData)
+		@scene.on "userPosition", (data)=>
+			@map.setUserPosition(data.x, data.y)
+		@scene.on "userAngle", (angle)=>
+			@map.setUserAngle(angle)
+
 		@renderer.init(@scene.scene, @scene.camera)
 		@loaded = true
 

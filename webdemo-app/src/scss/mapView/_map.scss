@@ -1,0 +1,47 @@
+#map {
+	
+	position: absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+
+	pointer-events:none;
+
+	.mapContainer {
+		position: absolute;
+		bottom:5%;
+		left:5%;
+
+		width:15%;
+		
+
+		canvas {
+			position: absolute;
+			bottom:0px;
+			width:100%;
+			height:auto;
+
+			
+		}
+
+	}
+
+	.userMarker {
+		position: absolute;
+		width:10px;
+		height:10px;
+
+		transform-origin:0% 0%;
+
+		.userMarkerInner {
+			width:10px;
+			height:10px;
+			position: relative;
+			top:-5px;
+			left:-5px;
+			background-color:hsl(180, 70, 70);
+		}
+	}
+
+}
