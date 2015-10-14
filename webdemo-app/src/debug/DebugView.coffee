@@ -19,7 +19,14 @@ class DebugView extends EventEmitter
 			'cameraLookAtX':	0
 			'cameraLookAtY':	0
 			'cameraLookAtZ':	0
+			'maxVelocity':		300
+			'speedStep':		2
 		}
+
+		@movementFolder = @gui.addFolder "Movement"
+		@movementFolder.add(@settings, 'maxVelocity', 50, 500).name("Max. Velocity").onChange(@_notifyChange)
+		@movementFolder.add(@settings, 'speedStep', 0.5, 5).name("Acceleration").onChange(@_notifyChange)
+		@movementFolder.open()
 
 		# @cameraFolder = @gui.addFolder "Camera"
 		# @cameraFolder.add @settings, 'cameraX', -500,800
@@ -78,6 +85,9 @@ class DebugView extends EventEmitter
 		# 	message.className = "bot_history waiting"
 		# 	message.className += " " + value
 		# )
+
+	_notifyChange:()=>
+		@emit("change", @settings)
 
 
 module.exports = new DebugView()

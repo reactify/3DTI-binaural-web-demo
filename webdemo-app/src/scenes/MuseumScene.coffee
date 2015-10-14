@@ -1,19 +1,16 @@
 Scene = require "../gfx/Scene.coffee"
-
-AxisController = require "./objects/AxisController.coffee"
-
+DebugView = require "../debug/DebugView.coffee"
 gsap = require "gsap"
 
 UNITSIZE = 250
-WALLHEIGHT = UNITSIZE * 5
-MOVESPEED = 100
+WALLHEIGHT = UNITSIZE * 2
 SPEED_STEP = 2
 MAX_VELOCITY = 300
 LOOKSPEED = 0.075
 
 
 
-class DisplayScene extends Scene
+class MuseumScene extends Scene
 	constructor:()->
 		super
 
@@ -36,6 +33,10 @@ class DisplayScene extends Scene
 		@mouseVector = new THREE.Vector2()
 		@mouseButton = false
 
+		@mapX = 0
+		@mapY = 0
+		@wallColliding = false
+
 	init:(@mapURL)=>
 		super
 
@@ -55,6 +56,7 @@ class DisplayScene extends Scene
 		document.addEventListener("keydown", @onKeyDown)
 		document.addEventListener("keyup", @onKeyUp)
 
+		DebugView.on("change", @onSettingsUpdated)
 
 	onLoaded:()=>
 
@@ -72,10 +74,15 @@ class DisplayScene extends Scene
 
 	createMuseum:()=>
 
+		@mapWidth = @mapData.length
+		@mapHeight = @mapData[0].length
+
 		# create Floor
-		@floor = new THREE.Mesh(new THREE.BoxGeometry(mapHeight * UNITSIZE, 10, mapWidth * UNITSIZE), new THREE.MeshLambertMaterial({ color : 0xebebeb }))
+		@floor = new THREE.Mesh(new THREE.BoxGeometry(@mapHeight * UNITSIZE, 10, @mapWidth * UNITSIZE), new THREE.MeshLambertMaterial({ color : 0xebebeb }))
+		@floor.position.y = -5
 		# @floor.position.x = mapHeight/-2 * UNITSIZE
 		# @floor.position.z = mapWidth/-2 * UNITSIZE
+
 		@scene.add @floor
 
 		# create Walls
@@ -83,25 +90,44 @@ class DisplayScene extends Scene
 
 		wallMaterial = new THREE.MeshLambertMaterial({ color : 0xebebeb })
 
-		mapWidth = @mapData.length
-		mapHeight = @mapData[0].length
+		materialGround1 = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true, vertexColors: THREE.FaceColors, side: THREE.DoubleSided } )
+		materialGround = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true,  vertexColors: THREE.FaceColors } )
+
+		materialGround.emissive.setHSL( 0, 0, 0.35 )
+		materialGround1.emissive.setHSL( 0, 0, 0.35 )
+
 
 		for x in [0..@mapData.length-1] by 1
 			for y in [0..@mapData[x].length-1] by 1
 				a = @mapData[x][y]
 				if a == "1"
 					# create wall here
-					newWall = new THREE.Mesh(cube, wallMaterial)
-					newWall.position.x = (x - mapWidth/2) * UNITSIZE
+					newWall = new THREE.Mesh(cube, materialGround1)
+					newWall.position.x = (x - @mapWidth/2) * UNITSIZE
 					newWall.position.y = WALLHEIGHT/2
-					newWall.position.z = (y - mapHeight/2) * UNITSIZE
+					newWall.position.z = (y - @mapHeight/2) * UNITSIZE
 
 					@scene.add newWall
 					@walls.push newWall
+				else if a != "0"
+					# create sound source here
+					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 5, 5), new THREE.MeshLambertMaterial({ color : 0xff0000 }))
+					newSource.position.x = (x - @mapWidth/2) * UNITSIZE
+					newSource.position.y = WALLHEIGHT/2
+					newSource.position.z = (y - @mapHeight/2) * UNITSIZE
+					@scene.add newSource
+					@soundSources.push newSource
 
 		# add lighting
-		light = new THREE.HemisphereLight(0xffffbb, 0x080820, 1)
-		@scene.add light
+		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.7)
+		lightHemi.castShadow = true
+		@scene.add lightHemi
+
+		light1 = new THREE.DirectionalLight(0xffffff, 1)
+		light1.position.set(0, WALLHEIGHT, 0)
+		light1.castShadow = true
+		light1.onlyShadow = true
+		@scene.add light1
 
 		# adjust camera
 		@controls.getObject().position.y = WALLHEIGHT/2
@@ -129,7 +155,6 @@ class DisplayScene extends Scene
 		@mouseVector.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
 
-
 	onMouseDown:(e)=>
 		@mouseButton = true
 
@@ -137,6 +162,10 @@ class DisplayScene extends Scene
 	onMouseUp:(e)=>
 
 		@mouseButton = false
+
+	getRandomColorHex:()=>
+		return 0xff0000
+		# return '#'+Math.floor(Math.random()*16777215).toString(16)
 
 	update:()=>
 		super
@@ -158,11 +187,35 @@ class DisplayScene extends Scene
 			@velocity.x -= -SPEED_STEP
 			@velocity.x = Math.min @velocity.x, -MAX_VELOCITY
 
+		# find out which square we're in, and bounce off if we're in a wall
+		@mapX = Math.floor(@controls.getObject().position.x / (UNITSIZE)) + @mapWidth/2
+		@mapZ = Math.floor(@controls.getObject().position.z / (UNITSIZE)) + @mapHeight/2
+
+		@mapX = Math.min(@mapHeight, Math.max(0, @mapX))
+		@mapZ = Math.min(@mapWidth, Math.max(0, @mapZ))
+
+		console.log "current map location = #{@mapX}, #{@mapZ}"
+
+		if @mapData[@mapX][@mapZ] == "1"
+			console.warn "WALL"
+			if not @wallColliding
+				@velocity.multiplyScalar(-1.1)
+				@moving.forward = false
+				@moving.backward = false
+				@moving.left = false
+				@moving.right = false
+				@wallColliding = true
+		else
+			@wallColliding = false
+
 		@controls.getObject().translateX(@velocity.x * 0.1)
 		@controls.getObject().translateZ(@velocity.z * 0.1)
-		
-
-		# if @loaded
 
 
-module.exports = DisplayScene
+
+	onSettingsUpdated:(newSettings)=>
+		SPEED_STEP = newSettings.speedStep
+		MAX_VELOCITY = newSettings.maxVelocity
+
+
+module.exports = MuseumScene

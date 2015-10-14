@@ -10,7 +10,7 @@ class Scene extends EventEmitter
 		@cameraAnchor = new THREE.Vector3(0,0,0)
 		@cameraOffset = new THREE.Vector3(0,0,0)
 
-		@camera = new THREE.PerspectiveCamera 45, 1, .001, 10000
+		@camera = new THREE.PerspectiveCamera 60, 1, 1, 10000
 		@scene.add @camera
 
 		@resize()
