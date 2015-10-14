@@ -7,6 +7,7 @@ Main = new ->
 	app = null
 	stats = null
 	queryParams = null
+	audio = null
 
 	init = () ->
 		if !initialized
@@ -16,6 +17,7 @@ Main = new ->
 
 			app = new App()
 			app.init()
+			audio = app.audio
 
 			window.requestAnimationFrame render
 
@@ -54,6 +56,7 @@ Main = new ->
 	return {
 		init: init
 		getQueryParams : getQueryParams
+		audio : audio
 	}
 
 # globals

@@ -2,6 +2,8 @@
 Config = require "../config/Config.coffee"
 Renderer = require "../gfx/Renderer.coffee"
 
+HeavyAudioInterface = require "../heavy/HeavyAudioInterface.coffee"
+
 MuseumScene = require "../scenes/MuseumScene.coffee"
 # DisplaySocketHandler = require "../display/DisplaySocketHandler.coffee"
 
@@ -20,6 +22,7 @@ class TuneInApp
 		@scene = new MuseumScene()
 
 		@map = new MapView($("map"))
+		@audio = new HeavyAudioInterface(testLib)
 
 		@loaded = false
 
@@ -38,13 +41,42 @@ class TuneInApp
 	onSceneLoaded:()=>
 
 		@map.init(@scene.mapData)
-		@scene.on "userPosition", (data)=>
-			@map.setUserPosition(data.x, data.y)
-		@scene.on "userAngle", (angle)=>
-			@map.setUserAngle(angle)
+		@scene.on "userPosition", @onUserPositionChange
+		@scene.on "userAngle", @onUserAngleChange
 
+		@audio.on "loaded", @onAudioLoaded
+		@audio.init()
+		
+
+	onAudioLoaded:()=>
+
+		# setup params for testLib
+		@audio.sendFloat "pwm-freq", 0.5
+		@audio.sendFloat "note-1", 0.5
+		@audio.sendFloat "ba", 0.5
+		@audio.sendFloat "pwm-amt", 0.5
+		@audio.sendFloat "note-2", 0.5
+		@audio.sendFloat "positions", 0.5
+		@audio.sendFloat "transpose", 0.5
+		@audio.sendFloat "note-3", 0.5
+		@audio.sendFloat "hh", 0.5
+		@audio.sendFloat "listener-direction", 0.5
+		@audio.sendFloat "listener-y", 0.5
+		@audio.sendFloat "listener-x", 0.5
+		@audio.sendFloat "kick", 0.5
+		@audio.sendFloat "note-0", 0.5
+
+		@audio.reset()
 		@renderer.init(@scene.scene, @scene.camera)
 		@loaded = true
+	
+	onUserPositionChange:(data)=>
+		@map.setUserPosition(data.x, data.y)
+		@audio.sendFloat "listener-x", data.x * 32
+		@audio.sendFloat "listener-y", data.y * 32
+
+	onUserAngleChange:(angle)=>
+		@map.setUserAngle(angle)
 
 
 	render:()=>
