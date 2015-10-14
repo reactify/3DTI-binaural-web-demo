@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+
+    <!-- Generated javascript library includes -->
+    <script type="application/javascript" src="./testLib.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <style>
+    .cell {
+      display: table-cell;
+      padding-right: 10px;
+    }
+
+    .row {
+      display: table-row;
+    }
+
+    </style>
+
+    <script type="text/javascript">
+      var isPlaying = false;
+      var webAudioContext = null;
+      var webAudioProcessor = null;
+      var test = null;
+
+      window.onload = function(e) {
+
+        webAudioContext = new (window.AudioContext || window.webkitAudioContext);
+
+        blockSize = 2048
+
+        test = new testLib({
+          sampleRate: webAudioContext.sampleRate,
+          blockSize: blockSize,
+          printHook: hvPrintHook,
+          sendHook: hvSendHook
+        });
+
+        webAudioProcessor = webAudioContext.createScriptProcessor(
+          blockSize,
+          test.getNumInputChannels(),
+          // Note: make sure there is at least one output channel specified so that
+          // we can process patches that have no i/o objects (i.e. control only)
+          Math.max(test.getNumOutputChannels(), 1)
+        );
+
+        webAudioProcessor.onaudioprocess = function(e) { test.process(e); }
+
+        document.getElementById("transportButton").textContent = "Play";
+        isPlaying = false;
+
+        // Generated Parameter Display Initialisations
+        updateSlider_pwmfreq(0.5);
+        updateSlider_note1(0.5);
+        updateSlider_ba(0.5);
+        updateSlider_pwmamt(0.5);
+        updateSlider_note2(0.5);
+        updateSlider_positions(0.5);
+        updateSlider_transpose(0.5);
+        updateSlider_note3(0.5);
+        updateSlider_hh(0.5);
+        updateSlider_listenerdirection(0.5);
+        updateSlider_listenery(0.5);
+        updateSlider_listenerx(0.5);
+        updateSlider_kick(0.5);
+        updateSlider_note0(0.5);
+      };
+
+      function hvPrintHook(message) {
+        console.log(message);
+      };
+
+      function hvSendHook(message) {
+        console.log(message);
+      };
+
+      function start() {
+        webAudioProcessor.connect(webAudioContext.destination);
+        document.getElementById("transportButton").textContent = "Pause";
+        isPlaying = true;
+      };
+
+      function stop() {
+        webAudioProcessor.disconnect(webAudioContext.destination);
+        document.getElementById("transportButton").textContent = "Play";
+        isPlaying = false;
+      };
+
+      function toggleTransport(element) {
+        (isPlaying) ? stop() : start();
+      };
+
+      // Generated Parameter Update Methods
+      
+      function updateSlider_pwmfreq(value) {
+        document.getElementById("display_pwmfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("pwm-freq", value);
+      };
+      
+      function updateSlider_note1(value) {
+        document.getElementById("display_note1").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("note-1", value);
+      };
+      
+      function updateSlider_ba(value) {
+        document.getElementById("display_ba").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("ba", value);
+      };
+      
+      function updateSlider_pwmamt(value) {
+        document.getElementById("display_pwmamt").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("pwm-amt", value);
+      };
+      
+      function updateSlider_note2(value) {
+        document.getElementById("display_note2").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("note-2", value);
+      };
+      
+      function updateSlider_positions(value) {
+        document.getElementById("display_positions").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("positions", value);
+      };
+      
+      function updateSlider_transpose(value) {
+        document.getElementById("display_transpose").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("transpose", value);
+      };
+      
+      function updateSlider_note3(value) {
+        document.getElementById("display_note3").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("note-3", value);
+      };
+      
+      function updateSlider_hh(value) {
+        document.getElementById("display_hh").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("hh", value);
+      };
+      
+      function updateSlider_listenerdirection(value) {
+        document.getElementById("display_listenerdirection").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("listener-direction", value);
+      };
+      
+      function updateSlider_listenery(value) {
+        document.getElementById("display_listenery").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("listener-y", value);
+      };
+      
+      function updateSlider_listenerx(value) {
+        document.getElementById("display_listenerx").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("listener-x", value);
+      };
+      
+      function updateSlider_kick(value) {
+        document.getElementById("display_kick").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("kick", value);
+      };
+      
+      function updateSlider_note0(value) {
+        document.getElementById("display_note0").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("note-0", value);
+      };
+
+      var currentMousePos = { x: -1, y: -1 };
+      $(document).mousemove(function(event) {
+          var winWidth = $( window ).width();
+          var winHeight = $( window ).height();
+          currentMousePos.x = (event.pageX / winWidth)*32.0;
+          currentMousePos.y = (event.pageY / winHeight)*32.0;
+          test.sendFloatToReceiver("listener-x", currentMousePos.x);
+          test.sendFloatToReceiver("listener-y", currentMousePos.y);
+          console.log('X = '+currentMousePos.x+', Y = '+currentMousePos.y);
+      });
+      
+    </script>
+  </head>
+
+  <body>
+    <div>
+
+      <div>
+        <button style="padding: 10px;" type="button" id="transportButton" onclick="toggleTransport(this);"/>
+      </div>
+
+      <div class="table"> <!-- Generated Parameters -->
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_pwmfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmfreq(value);" oninput="updateSlider_pwmfreq(value)">
+          </div>
+          <div class="cell" id="display_pwmfreq"></div>
+          <div class="cell"><strong>pwm-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_note1" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note1(value);" oninput="updateSlider_note1(value)">
+          </div>
+          <div class="cell" id="display_note1"></div>
+          <div class="cell"><strong>note-1</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_ba" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_ba(value);" oninput="updateSlider_ba(value)">
+          </div>
+          <div class="cell" id="display_ba"></div>
+          <div class="cell"><strong>ba</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_pwmamt" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmamt(value);" oninput="updateSlider_pwmamt(value)">
+          </div>
+          <div class="cell" id="display_pwmamt"></div>
+          <div class="cell"><strong>pwm-amt</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_note2" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note2(value);" oninput="updateSlider_note2(value)">
+          </div>
+          <div class="cell" id="display_note2"></div>
+          <div class="cell"><strong>note-2</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_positions" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_positions(value);" oninput="updateSlider_positions(value)">
+          </div>
+          <div class="cell" id="display_positions"></div>
+          <div class="cell"><strong>positions</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_transpose" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_transpose(value);" oninput="updateSlider_transpose(value)">
+          </div>
+          <div class="cell" id="display_transpose"></div>
+          <div class="cell"><strong>transpose</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_note3" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note3(value);" oninput="updateSlider_note3(value)">
+          </div>
+          <div class="cell" id="display_note3"></div>
+          <div class="cell"><strong>note-3</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_hh" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_hh(value);" oninput="updateSlider_hh(value)">
+          </div>
+          <div class="cell" id="display_hh"></div>
+          <div class="cell"><strong>hh</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_listenerdirection" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenerdirection(value);" oninput="updateSlider_listenerdirection(value)">
+          </div>
+          <div class="cell" id="display_listenerdirection"></div>
+          <div class="cell"><strong>listener-direction</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_listenery" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenery(value);" oninput="updateSlider_listenery(value)">
+          </div>
+          <div class="cell" id="display_listenery"></div>
+          <div class="cell"><strong>listener-y</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_listenerx" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenerx(value);" oninput="updateSlider_listenerx(value)">
+          </div>
+          <div class="cell" id="display_listenerx"></div>
+          <div class="cell"><strong>listener-x</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_kick" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_kick(value);" oninput="updateSlider_kick(value)">
+          </div>
+          <div class="cell" id="display_kick"></div>
+          <div class="cell"><strong>kick</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_note0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note0(value);" oninput="updateSlider_note0(value)">
+          </div>
+          <div class="cell" id="display_note0"></div>
+          <div class="cell"><strong>note-0</strong></div>
+        </div>
+        
+      </div>
+
+      <div>
+        <p style="padding: 10px;"><em>powered by </em><a href="https://enzienaudio.com"><strong>Heavy</strong></a></p>
+      </div>
+
+    </div>
+  </body>
+</html>
