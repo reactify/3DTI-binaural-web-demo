@@ -104,9 +104,9 @@ class MuseumScene extends Scene
 		materialGround1.emissive.setHSL( 0, 0, 0.55 )
 
 
-		for x in [0..@mapData.length-1] by 1
-			for y in [0..@mapData[x].length-1] by 1
-				a = @mapData[x][y]
+		for y in [0..@mapData.length-1] by 1
+			for x in [0..@mapData[y].length-1] by 1
+				a = @mapData[y][x]
 				if a == "1"
 					# create wall here
 					wallUnit = new THREE.Object3D()
@@ -219,7 +219,7 @@ class MuseumScene extends Scene
 
 		# console.log "current map location = #{@mapX}, #{@mapZ}"
 
-		if @mapData[@mapX][@mapZ] == "1"
+		if @mapData[@mapZ][@mapX] == "1"
 			console.warn "WALL"
 			if not @wallColliding
 				@velocity.multiplyScalar(-1.1)

@@ -25,9 +25,9 @@ class MapView
 		@ctx.strokeStyle = "rgba(255,255,255,0.2)"
 		@ctx.strokeRect(1,1,SIZE-1,SIZE-1)
 
-		for x in [0..mapData.length-1] by 1
-			for y in [0..mapData[0].length-1] by 1
-				if mapData[x][y] == "1"
+		for y in [0..mapData.length-1] by 1
+			for x in [0..mapData[0].length-1] by 1
+				if mapData[y][x] == "1"
 					# draw a wall
 					@ctx.fillStyle = "rgba(255, 255, 255, 0.7)"
 					@ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize)
