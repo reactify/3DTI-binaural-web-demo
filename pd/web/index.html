@@ -66,6 +66,9 @@
 
       function hvPrintHook(message) {
         console.log(message);
+        if (message[1] == "js-soundfiler") {
+
+        }
       };
 
       function hvSendHook(message) {
@@ -150,6 +153,72 @@
           test.sendFloatToReceiver("listener-y", currentMousePos.y);
           // console.log('X = '+currentMousePos.x+', Y = '+currentMousePos.y);
       });
+
+      // Load HRIRs
+      function loadHRIR() {
+        loadAudio("IRC_1018_C/IRC_1018_C_R0195_T"+azimuth+"_P"+elevation+".wav", "IR")
+      }
+
+      function setAzimuth(value) {
+        if (value<10) {
+          value="00"+value;
+        }else if(value<100){
+          value="0"+value;
+        }
+        azimuth = value;
+        loadHRIR();
+      }
+
+      function setElevation(value) {
+        if (value>3) {
+          value=parseInt(value)+17;
+        }
+        
+        value = value * 15;
+        if (value<10) {
+          value="00"+value;
+        }else if(value<100){
+          value="0"+value;
+        }
+        elevation = value;
+        loadHRIR();
+      }
+
+      function sendToHeavy(name, buffer, sampleName) {
+        var leftTable = test.getTableForName(sampleName+"-1");
+        leftTable.setBufferWithData(buffer.getChannelData(0));
+        var rightTable = test.getTableForName(sampleName+"-2");
+        rightTable.setBufferWithData(buffer.getChannelData(1));
+        console.log('Setting '+leftTable+' with '+buffer);
+        console.log('Setting§ '+rightTable+' with '+buffer);     
+      }
+
+      function decodingFinished(name, decodedBuffer, sampleName) {
+        decodedTable[name] = decodedBuffer;
+        if (numberToDecode == 0) {
+          for (var name in decodedTable) {
+            console.log("sending " + name + " to heavy");
+            sendToHeavy(name, decodedTable[name], sampleName);
+          }
+        }
+      }
+
+      function loadAudio(url, sampleName) {
+        // url = "audio/"+sampleName+".mp3";
+        var rq = new XMLHttpRequest();
+        rq.open("GET", url, true);
+        rq.responseType = "arraybuffer";
+        rq.send();
+
+        rq.onload = function() {
+          var audioData = rq.response;
+          webAudioContext.decodeAudioData(audioData, function(buffer){
+            console.log("Finished loading "+url);
+            numberToDecode--;
+            decodingFinished(url, buffer, sampleName);
+          });
+        }
+      }
       
     </script>
   </head>
