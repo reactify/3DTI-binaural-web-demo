@@ -6,7 +6,6 @@
 
     <!-- Generated javascript library includes -->
     <script type="application/javascript" src="./testLib.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <style>
     .cell {
       display: table-cell;
@@ -139,17 +138,6 @@
         document.getElementById("display_note0").textContent = Number(value).toFixed(2);
         test.sendFloatToReceiver("note-0", value);
       };
-
-      var currentMousePos = { x: -1, y: -1 };
-      $(document).mousemove(function(event) {
-          var winWidth = $( window ).width();
-          var winHeight = $( window ).height();
-          currentMousePos.x = (event.pageX / winWidth)*32.0;
-          currentMousePos.y = (event.pageY / winHeight)*32.0;
-          test.sendFloatToReceiver("listener-x", currentMousePos.x);
-          test.sendFloatToReceiver("listener-y", currentMousePos.y);
-          // console.log('X = '+currentMousePos.x+', Y = '+currentMousePos.y);
-      });
       
     </script>
   </head>
