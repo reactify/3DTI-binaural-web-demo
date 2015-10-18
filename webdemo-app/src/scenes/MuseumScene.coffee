@@ -43,7 +43,7 @@ class MuseumScene extends Scene
 		super
 
 		# add atmospherics
-		@scene.fog = new THREE.Fog(0xffffff, 10, 10000)
+		@scene.fog = new THREE.Fog(0xffffff, 10, 20000)
 
 
 		# load map from JSON file
@@ -67,23 +67,54 @@ class MuseumScene extends Scene
 
 		mapJson = JSON.parse(@rq.responseText)
 		@mapData = mapJson.map
-		@createMuseum()
 
-		@controls.enabled = true
+		@loadTextures(()=>
 
-		@reportPositionId = setInterval(@reportUserPosition, 100)
+			@createMuseum(()=>
 
-		super
+				@controls.enabled = true
+
+				@reportPositionId = setInterval(@reportUserPosition, 100)
+				
+				super
+
+				)
+
+			)
 
 
+		
+		
 
-	createMuseum:()=>
+	loadTextures:(callback)=>
+
+		@texLoader = new THREE.TextureLoader()
+
+		@texLoader.load(
+			"images/metal2_normal.jpg",
+			(texture)=>
+				texture.repeat.x = 100
+				texture.repeat.y = 100
+				texture.wrapS = THREE.RepeatWrapping
+				texture.wrapT = THREE.RepeatWrapping
+				texture.needsUpdate = true
+				@floorMaterial = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true, vertexColors: THREE.FaceColors, bumpMap : texture } )
+			)
+
+		@texLoader.load(
+			"images/stone_normal.jpg", 
+			(texture)=>
+				@wallMaterial = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xdddddd, specular: 0xffffff, perPixel: true, vertexColors: THREE.FaceColors, bumpMap : texture } )
+				callback()
+			)
+
+	createMuseum:(callback)=>
 
 		@mapWidth = @mapData.length
 		@mapHeight = @mapData[0].length
 
 		# create Floor
-		@floor = new THREE.Mesh(new THREE.BoxGeometry(@mapHeight * UNITSIZE, 10, @mapWidth * UNITSIZE), new THREE.MeshLambertMaterial({ color : 0xebebeb }))
+		@floor = new THREE.Mesh(new THREE.BoxGeometry(@mapHeight * UNITSIZE, 10, @mapWidth * UNITSIZE), @floorMaterial)
 		@floor.position.y = -5
 		# @floor.position.x = mapHeight/-2 * UNITSIZE
 		# @floor.position.z = mapWidth/-2 * UNITSIZE
@@ -111,12 +142,16 @@ class MuseumScene extends Scene
 					# create wall here
 					wallUnit = new THREE.Object3D()
 
-					newWall = new THREE.Mesh(wallCube, materialGround1)
+					newWall = new THREE.Mesh(wallCube, @wallMaterial)
 					wallUnit.add newWall
 
-					newWallBase = new THREE.Mesh(wallBase, materialGround1)
+					newWallBase = new THREE.Mesh(wallBase,  @wallMaterial)
 					wallUnit.add newWallBase
 					newWallBase.position.y = -WALLHEIGHT/2 + WALLHEIGHT/40
+
+					newWallTop = new THREE.Mesh(wallBase, @wallMaterial)
+					wallUnit.add newWallTop
+					newWallTop.position.y = WALLHEIGHT/2
 
 					wallUnit.position.x = (x - @mapWidth/2) * UNITSIZE
 					wallUnit.position.y = WALLHEIGHT/2
@@ -150,7 +185,7 @@ class MuseumScene extends Scene
 			(geometry, materials)=>
 
 				TILE_SCALE_1 = 2.5
-				TILE_SCALE_2 = 3
+				TILE_SCALE_2 = 2
 				TILE_SCALE_3 = TILE_SCALE_1 * TILE_SCALE_2
 				NUM_TILES = @mapHeight / TILE_SCALE_2
 				
@@ -159,8 +194,8 @@ class MuseumScene extends Scene
 						newCeilingTile = new THREE.Mesh(geometry, materialGround1)
 						newCeilingTile.scale.set(TILE_SCALE_3, TILE_SCALE_3, TILE_SCALE_3)
 						newCeilingTile.position.y = WALLHEIGHT
-						newCeilingTile.position.x = ((x - NUM_TILES/2) * UNITSIZE * TILE_SCALE_2) + UNITSIZE
-						newCeilingTile.position.z = ((y - NUM_TILES/2) * UNITSIZE * TILE_SCALE_2) + UNITSIZE
+						newCeilingTile.position.x = ((x - NUM_TILES/2) * UNITSIZE * TILE_SCALE_2) + (UNITSIZE * TILE_SCALE_3 * 0.25)
+						newCeilingTile.position.z = ((y - NUM_TILES/2) * UNITSIZE * TILE_SCALE_2) + (UNITSIZE * TILE_SCALE_3 * 0.25)
 
 						idx = Math.random()
 						if idx > 0.3 and idx < 0.7
@@ -172,10 +207,12 @@ class MuseumScene extends Scene
 						
 						@scene.add newCeilingTile
 
+				callback()
+
 			)
 
 		# add lighting
-		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.6)
+		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.8)
 		# lightHemi.castShadow = true
 		@scene.add lightHemi
 
