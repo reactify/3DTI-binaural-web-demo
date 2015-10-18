@@ -77,7 +77,12 @@ class TuneInApp
 
 	onUserAngleChange:(angle)=>
 		@map.setUserAngle(angle)
-
+		
+		# angle conversion for pd
+		angle-=90
+		angle = angle % 360
+		if angle < 0 then angle += 360
+		@audio.sendFloat "listener-direction", angle
 
 	render:()=>
 
