@@ -72,10 +72,6 @@ class MuseumScene extends Scene
 
 			@createMuseum(()=>
 
-				@controls.enabled = true
-
-				@reportPositionId = setInterval(@reportUserPosition, 100)
-				
 				super
 
 				)
@@ -162,7 +158,7 @@ class MuseumScene extends Scene
 					@walls.push wallUnit
 				else if a != "0"
 					# create sound source here
-					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 5, 5), new THREE.MeshLambertMaterial({ color : 0xff0000 }))
+					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 5, 5), new THREE.MeshLambertMaterial({ color : 0xffaf4b }))
 					newSource.position.x = (x - @mapWidth/2) * UNITSIZE
 					newSource.position.y = WALLHEIGHT/2
 					newSource.position.z = (y - @mapHeight/2) * UNITSIZE
@@ -202,8 +198,6 @@ class MuseumScene extends Scene
 							newCeilingTile.rotation.y = Math.PI/2
 						else if idx > 0.7
 							newCeilingTile.rotation.y = Math.PI
-
-						console.log newCeilingTile.position
 						
 						@scene.add newCeilingTile
 
@@ -228,7 +222,10 @@ class MuseumScene extends Scene
 
 
 
-		
+	enableControls:()=>
+		@controls.enabled = true
+		@reportPositionId = setInterval(@reportUserPosition, 100)
+				
 
 	onKeyDown:(e)=>
 		switch(e.keyCode)

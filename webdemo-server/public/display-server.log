@@ -1,0 +1,95 @@
+{"level":"info","message":"Started Phone Socket Server","timestamp":"2015-09-14T21:50:44.561Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:50:47.599Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:50:47.657Z"}
+{"level":"warn","message":"Unknown game TEST accessed by phone","timestamp":"2015-09-14T21:50:47.657Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:51:04.225Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T21:51:04.253Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:51:06.369Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:51:06.403Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:51:06.403Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:51:06.403Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T21:52:25.729Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:52:32.920Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T21:52:32.940Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:52:37.245Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:52:37.307Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:52:37.307Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:52:37.307Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T21:53:18.707Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:53:19.921Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:53:19.958Z"}
+{"level":"warn","message":"Unknown game TEST accessed by phone","timestamp":"2015-09-14T21:53:19.958Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:53:25.308Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T21:53:25.328Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:53:25.910Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:53:25.944Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:53:25.944Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:53:25.944Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T21:53:53.889Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:53:56.407Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:53:56.439Z"}
+{"level":"warn","message":"Unknown game TEST accessed by phone","timestamp":"2015-09-14T21:53:56.439Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:54:19.577Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T21:54:19.600Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:54:21.286Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:54:21.316Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:54:21.316Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:54:21.316Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T21:54:30.006Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:54:40.256Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T21:54:40.278Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:54:42.550Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:54:42.609Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:54:42.610Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:54:42.611Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T21:55:58.039Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:56:01.276Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:56:01.318Z"}
+{"level":"warn","message":"Unknown game TEST accessed by phone","timestamp":"2015-09-14T21:56:01.318Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:57:11.595Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T21:57:11.623Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:57:12.669Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:57:12.702Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:57:12.702Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:57:12.702Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T21:57:16.746Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T21:57:16.782Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T21:57:16.782Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T21:57:16.782Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T22:03:47.136Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:03:56.851Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T22:03:56.878Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:03:58.337Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T22:03:58.365Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T22:03:58.365Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T22:03:58.365Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:04:07.306Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T22:04:07.345Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T22:04:07.346Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T22:04:07.346Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T22:04:37.486Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:04:43.069Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T22:04:43.088Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:04:44.380Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T22:04:44.418Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T22:04:44.418Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T22:04:44.418Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T22:05:39.717Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:11:03.480Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T22:11:03.502Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:11:06.693Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T22:11:06.851Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T22:11:06.851Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T22:11:06.851Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:11:08.135Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T22:11:08.187Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T22:11:08.187Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T22:11:08.188Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T22:11:48.132Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:11:56.183Z"}
+{"level":"info","message":"Browser connected with code TEST","timestamp":"2015-09-14T22:11:56.209Z"}
+{"level":"info","message":"Socket connected..","timestamp":"2015-09-14T22:11:58.180Z"}
+{"level":"info","message":"Phone connected with code TEST","timestamp":"2015-09-14T22:11:58.238Z"}
+{"level":"info","message":"Game has already started with this code, adding phone","timestamp":"2015-09-14T22:11:58.238Z"}
+{"level":"info","message":"Game TEST connected successfully","timestamp":"2015-09-14T22:11:58.238Z"}
+{"level":"info","message":"game TEST terminated by browser","timestamp":"2015-09-14T22:12:26.569Z"}

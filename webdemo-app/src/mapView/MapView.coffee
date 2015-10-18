@@ -31,6 +31,11 @@ class MapView
 					# draw a wall
 					@ctx.fillStyle = "rgba(255, 255, 255, 0.7)"
 					@ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize)
+				else if mapData[y][x] != "0"
+					# draw a sound source
+					@ctx.fillStyle = "#ffaf4b"
+					# @ctx.ellipse(x * cellSize, y * cellSize, cellSize, cellSize, 0, Math.PI, false)
+					@ctx.fillRect(x * cellSize + 2, y * cellSize + 2, cellSize - 4, cellSize - 4)
 
 
 
