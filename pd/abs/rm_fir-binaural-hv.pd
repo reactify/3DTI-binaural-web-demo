@@ -1,4 +1,4 @@
-#N canvas 38 136 910 635 10;
+#N canvas 38 136 621 631 10;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array \$0-leftIR 512 float 1;
 #A 0 0.00568426 -0.00116169 0.00419259 -0.00108886 0.00438082 -0.000558972
@@ -176,7 +176,7 @@
 #X obj 113 271 clip~ -1 1;
 #X obj 260 271 clip~ -1 1;
 #X obj 63 132 inlet~;
-#X obj 551 63 inlet;
+#X obj 393 65 inlet;
 #X obj 113 301 *~ 1;
 #X obj 260 301 *~ 1;
 #X obj 281 134 r ba;
@@ -186,7 +186,7 @@
 #X obj 180 593 throw~ r;
 #X obj 260 247 tabread~ \$0-rightIR 512;
 #X obj 113 247 tabread~ \$0-leftIR 512;
-#X obj 551 85 route azimuth elevation on;
+#X obj 393 87 route azimuth elevation on;
 #X obj 253 531 line~;
 #X obj 106 537 line~;
 #X obj 63 562 *~;
