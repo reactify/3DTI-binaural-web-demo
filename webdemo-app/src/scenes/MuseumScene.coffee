@@ -3,7 +3,7 @@ DebugView = require "../debug/DebugView.coffee"
 gsap = require "gsap"
 
 UNITSIZE = 250
-WALLHEIGHT = UNITSIZE * 2
+WALLHEIGHT = UNITSIZE * 3
 SPEED_STEP = 2
 MAX_VELOCITY = 300
 LOOKSPEED = 0.075
@@ -134,6 +134,46 @@ class MuseumScene extends Scene
 					@scene.add newSource
 					@soundSources.push newSource
 
+		# dummy wall at 0,0
+		# newWall = new THREE.Mesh(wallCube, materialGround1)
+		# newWall.position.x = -@mapWidth/2 * UNITSIZE
+		# newWall.position.z = -@mapHeight/2 * UNITSIZE
+		# newWall.position.y = WALLHEIGHT/2
+		# @scene.add newWall
+
+		# add ceiling tiles
+		@loader = new THREE.JSONLoader()
+
+
+		@loader.load(
+			"./obj/ceilingTile.js",
+			(geometry, materials)=>
+
+				TILE_SCALE_1 = 2.5
+				TILE_SCALE_2 = 3
+				TILE_SCALE_3 = TILE_SCALE_1 * TILE_SCALE_2
+				NUM_TILES = @mapHeight / TILE_SCALE_2
+				
+				for x in [0..(NUM_TILES)] by 1
+					for y in [0..(NUM_TILES)] by 1
+						newCeilingTile = new THREE.Mesh(geometry, materialGround1)
+						newCeilingTile.scale.set(TILE_SCALE_3, TILE_SCALE_3, TILE_SCALE_3)
+						newCeilingTile.position.y = WALLHEIGHT
+						newCeilingTile.position.x = ((x - NUM_TILES/2) * UNITSIZE * TILE_SCALE_2) + UNITSIZE
+						newCeilingTile.position.z = ((y - NUM_TILES/2) * UNITSIZE * TILE_SCALE_2) + UNITSIZE
+
+						idx = Math.random()
+						if idx > 0.3 and idx < 0.7
+							newCeilingTile.rotation.y = Math.PI/2
+						else if idx > 0.7
+							newCeilingTile.rotation.y = Math.PI
+
+						console.log newCeilingTile.position
+						
+						@scene.add newCeilingTile
+
+			)
+
 		# add lighting
 		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.6)
 		# lightHemi.castShadow = true
@@ -148,6 +188,9 @@ class MuseumScene extends Scene
 
 		# adjust camera
 		@controls.getObject().position.y = WALLHEIGHT/2
+
+
+
 		
 
 	onKeyDown:(e)=>
