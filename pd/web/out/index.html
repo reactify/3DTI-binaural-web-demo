@@ -52,15 +52,23 @@
 
         // Generated Parameter Display Initialisations
         updateSlider_pwmfreq(0.5);
-        updateSlider_note1(0.5);
-        updateSlider_ba(0.5);
+        updateSlider_5vol(0.5);
         updateSlider_pwmamt(0.5);
-        updateSlider_positions(0.5);
+        updateSlider_2vol(0.5);
+        updateSlider_1vol(0.5);
+        updateSlider_4vol(0.5);
+        updateSlider_hh(0.5);
         updateSlider_transpose(0.5);
-        updateSlider_listenerdirection(0.5);
-        updateSlider_listenery(0.5);
+        updateSlider_0vol(0.5);
         updateSlider_listenerx(0.5);
-        updateSlider_note0(0.5);
+        updateSlider_totalabove0(0.5);
+        updateSlider_voice0(0.5);
+        updateSlider_voice1(0.5);
+        updateSlider_positions(0.5);
+        updateSlider_3vol(0.5);
+        updateSlider_listenery(0.5);
+        updateSlider_listenerdirection(0.5);
+        updateSlider_kick(0.5);
       };
 
       function hvPrintHook(message) {
@@ -94,14 +102,9 @@
         test.sendFloatToReceiver("pwm-freq", value);
       };
       
-      function updateSlider_note1(value) {
-        document.getElementById("display_note1").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("note-1", value);
-      };
-      
-      function updateSlider_ba(value) {
-        document.getElementById("display_ba").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("ba", value);
+      function updateSlider_5vol(value) {
+        document.getElementById("display_5vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("5-vol", value);
       };
       
       function updateSlider_pwmamt(value) {
@@ -109,9 +112,24 @@
         test.sendFloatToReceiver("pwm-amt", value);
       };
       
-      function updateSlider_positions(value) {
-        document.getElementById("display_positions").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("positions", value);
+      function updateSlider_2vol(value) {
+        document.getElementById("display_2vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("2-vol", value);
+      };
+      
+      function updateSlider_1vol(value) {
+        document.getElementById("display_1vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("1-vol", value);
+      };
+      
+      function updateSlider_4vol(value) {
+        document.getElementById("display_4vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("4-vol", value);
+      };
+      
+      function updateSlider_hh(value) {
+        document.getElementById("display_hh").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("hh", value);
       };
       
       function updateSlider_transpose(value) {
@@ -119,14 +137,9 @@
         test.sendFloatToReceiver("transpose", value);
       };
       
-      function updateSlider_listenerdirection(value) {
-        document.getElementById("display_listenerdirection").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("listener-direction", value);
-      };
-      
-      function updateSlider_listenery(value) {
-        document.getElementById("display_listenery").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("listener-y", value);
+      function updateSlider_0vol(value) {
+        document.getElementById("display_0vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("0-vol", value);
       };
       
       function updateSlider_listenerx(value) {
@@ -134,9 +147,44 @@
         test.sendFloatToReceiver("listener-x", value);
       };
       
-      function updateSlider_note0(value) {
-        document.getElementById("display_note0").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("note-0", value);
+      function updateSlider_totalabove0(value) {
+        document.getElementById("display_totalabove0").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("total-above-0", value);
+      };
+      
+      function updateSlider_voice0(value) {
+        document.getElementById("display_voice0").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("voice-0", value);
+      };
+      
+      function updateSlider_voice1(value) {
+        document.getElementById("display_voice1").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("voice-1", value);
+      };
+      
+      function updateSlider_positions(value) {
+        document.getElementById("display_positions").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("positions", value);
+      };
+      
+      function updateSlider_3vol(value) {
+        document.getElementById("display_3vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("3-vol", value);
+      };
+      
+      function updateSlider_listenery(value) {
+        document.getElementById("display_listenery").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("listener-y", value);
+      };
+      
+      function updateSlider_listenerdirection(value) {
+        document.getElementById("display_listenerdirection").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("listener-direction", value);
+      };
+      
+      function updateSlider_kick(value) {
+        document.getElementById("display_kick").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("kick", value);
       };
       
     </script>
@@ -161,18 +209,10 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_note1" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note1(value);" oninput="updateSlider_note1(value)">
+            <input id="slider_5vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_5vol(value);" oninput="updateSlider_5vol(value)">
           </div>
-          <div class="cell" id="display_note1"></div>
-          <div class="cell"><strong>note-1</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_ba" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_ba(value);" oninput="updateSlider_ba(value)">
-          </div>
-          <div class="cell" id="display_ba"></div>
-          <div class="cell"><strong>ba</strong></div>
+          <div class="cell" id="display_5vol"></div>
+          <div class="cell"><strong>5-vol</strong></div>
         </div>
         
         <div class="row">
@@ -185,10 +225,34 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_positions" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_positions(value);" oninput="updateSlider_positions(value)">
+            <input id="slider_2vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_2vol(value);" oninput="updateSlider_2vol(value)">
           </div>
-          <div class="cell" id="display_positions"></div>
-          <div class="cell"><strong>positions</strong></div>
+          <div class="cell" id="display_2vol"></div>
+          <div class="cell"><strong>2-vol</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_1vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_1vol(value);" oninput="updateSlider_1vol(value)">
+          </div>
+          <div class="cell" id="display_1vol"></div>
+          <div class="cell"><strong>1-vol</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_4vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_4vol(value);" oninput="updateSlider_4vol(value)">
+          </div>
+          <div class="cell" id="display_4vol"></div>
+          <div class="cell"><strong>4-vol</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_hh" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_hh(value);" oninput="updateSlider_hh(value)">
+          </div>
+          <div class="cell" id="display_hh"></div>
+          <div class="cell"><strong>hh</strong></div>
         </div>
         
         <div class="row">
@@ -201,18 +265,10 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_listenerdirection" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenerdirection(value);" oninput="updateSlider_listenerdirection(value)">
+            <input id="slider_0vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_0vol(value);" oninput="updateSlider_0vol(value)">
           </div>
-          <div class="cell" id="display_listenerdirection"></div>
-          <div class="cell"><strong>listener-direction</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_listenery" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenery(value);" oninput="updateSlider_listenery(value)">
-          </div>
-          <div class="cell" id="display_listenery"></div>
-          <div class="cell"><strong>listener-y</strong></div>
+          <div class="cell" id="display_0vol"></div>
+          <div class="cell"><strong>0-vol</strong></div>
         </div>
         
         <div class="row">
@@ -225,10 +281,66 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_note0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note0(value);" oninput="updateSlider_note0(value)">
+            <input id="slider_totalabove0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_totalabove0(value);" oninput="updateSlider_totalabove0(value)">
           </div>
-          <div class="cell" id="display_note0"></div>
-          <div class="cell"><strong>note-0</strong></div>
+          <div class="cell" id="display_totalabove0"></div>
+          <div class="cell"><strong>total-above-0</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_voice0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_voice0(value);" oninput="updateSlider_voice0(value)">
+          </div>
+          <div class="cell" id="display_voice0"></div>
+          <div class="cell"><strong>voice-0</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_voice1" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_voice1(value);" oninput="updateSlider_voice1(value)">
+          </div>
+          <div class="cell" id="display_voice1"></div>
+          <div class="cell"><strong>voice-1</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_positions" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_positions(value);" oninput="updateSlider_positions(value)">
+          </div>
+          <div class="cell" id="display_positions"></div>
+          <div class="cell"><strong>positions</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_3vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_3vol(value);" oninput="updateSlider_3vol(value)">
+          </div>
+          <div class="cell" id="display_3vol"></div>
+          <div class="cell"><strong>3-vol</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_listenery" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenery(value);" oninput="updateSlider_listenery(value)">
+          </div>
+          <div class="cell" id="display_listenery"></div>
+          <div class="cell"><strong>listener-y</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_listenerdirection" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenerdirection(value);" oninput="updateSlider_listenerdirection(value)">
+          </div>
+          <div class="cell" id="display_listenerdirection"></div>
+          <div class="cell"><strong>listener-direction</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_kick" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_kick(value);" oninput="updateSlider_kick(value)">
+          </div>
+          <div class="cell" id="display_kick"></div>
+          <div class="cell"><strong>kick</strong></div>
         </div>
         
       </div>
