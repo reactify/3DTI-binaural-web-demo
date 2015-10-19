@@ -26,7 +26,7 @@ body {
   left: 0;
   font-size: 15px;
   line-height: 1.4;
-  font-family: "Helvetica Neue" Arial sans-serif;
+  font-family: "Oswald" Arial sans-serif;
   letter-spacing: 0.1em;
   color: #d6d6d6;
   background-color: #f0f0f0;
@@ -148,4 +148,143 @@ input {
   top: -5px;
   left: -5px;
   background-color: #7de8e8;
+  background-color: #ffaf4b;
+  border-radius: 50%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\000031}}
+.page#introPage {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0.5) 0%);
+  background-size: 5px 5px;
+  transition: all 0.5s;
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000320}}
+.page#introPage .pageInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffaf4b;
+  background: linear-gradient(to bottom, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
+  background: linear-gradient(to bottom, #ffaf4b 0%, #ff920a 100%);
+  border-radius: 50%;
+  width: 30em;
+  height: 30em;
+  padding: 5em;
+  text-align: center;
+  color: #2B2B2B;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000338}}
+.page#introPage .pageInner h1 {
+  font-size: 4em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000347}}
+.page#introPage .pageInner p {
+  margin-top: 2em;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000354}}
+.page#introPage .pageInner .inputSelect {
+  margin-top: 1em;
+  font-size: 3em;
+  line-height: 2em;
+  text-align: center;
+  color: white;
+  position: absolute;
+  opacity: 0.6;
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000372}}
+.page#introPage .pageInner .inputSelect#phone {
+  right: 3em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000376}}
+.page#introPage .pageInner .inputSelect#mouse {
+  left: 3em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000380}}
+.page#introPage .pageInner .inputSelect:hover {
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000384}}
+.page#introPage .pageInner .inputSelect.disable {
+  opacity: 0.1;
+  pointer-events: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\0000392}}
+.page#introPage .codeDialog {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\00003102}}
+.page#introPage .codeDialog .dialogBackground {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0.5) 0%);
+  background-size: 5px 5px;
+  opacity: 0.8;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\00003122}}
+.page#introPage .codeDialog .dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  width: auto;
+  background: white;
+  background: linear-gradient(to bottom, #ffaf4b 0%, #ff920a 100%);
+  border-radius: 3em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\00003139}}
+.page#introPage .codeDialog .dialog h2 {
+  color: #2B2B2B;
+  font-size: 2.2em;
+  line-height: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-bottom: 0.5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\00003148}}
+.page#introPage .codeDialog .dialog h3 {
+  color: #2B2B2B;
+  font-size: 1.5em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\00003153}}
+.page#introPage .codeDialog .dialog input {
+  text-align: center;
+  letter-spacing: 1em;
+  font-size: 2.2em;
+  padding-left: 2em;
+  padding-right: 1em;
+  background: white;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 0.2em;
+  color: #2B2B2B;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/pages\/_intro\.scss}line{font-family:\00003166}}
+.page#introPage .codeDialog .dialog p {
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-top: 1em;
+  color: #2B2B2B;
 }

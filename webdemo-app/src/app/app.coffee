@@ -10,6 +10,8 @@ MuseumScene = require "../scenes/MuseumScene.coffee"
 DebugView = require "../debug/DebugView.coffee"
 MapView = require "../mapView/MapView.coffee"
 
+IntroPage = require "../pages/IntroPage.coffee"
+
 class TuneInApp
 	constructor:()->
 
@@ -23,6 +25,8 @@ class TuneInApp
 
 		@map = new MapView($("map"))
 		@audio = new HeavyAudioInterface(testLib)
+
+		@introPage = new IntroPage()
 
 		@loaded = false
 
@@ -68,7 +72,18 @@ class TuneInApp
 
 		@audio.reset()
 		@renderer.init(@scene.scene, @scene.camera)
+		
+		@introPage.init("intro", "./html/intro.html", document.body.querySelector("#container"))
+		@introPage.on("loaded", @onIntroLoaded)
+
+	onIntroLoaded:()=>
+		@introPage.show()
 		@loaded = true
+		@introPage.on("hide", ()=>
+			
+			@scene.enableControls()
+			)
+		
 	
 	onUserPositionChange:(data)=>
 		@map.setUserPosition(data.x, data.y)
@@ -77,7 +92,12 @@ class TuneInApp
 
 	onUserAngleChange:(angle)=>
 		@map.setUserAngle(angle)
-
+		
+		# angle conversion for pd
+		angle-=90
+		angle = angle % 360
+		if angle < 0 then angle += 360
+		@audio.sendFloat "listener-direction", angle
 
 	render:()=>
 

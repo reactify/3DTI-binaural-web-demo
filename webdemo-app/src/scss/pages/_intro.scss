@@ -1,0 +1,179 @@
+.page#introPage {
+	
+	position:absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+
+	background-image:
+		radial-gradient(
+			circle,
+			rgba(0,0,0,0.7) 80%,
+			rgba(0,0,0,0.5) 0
+		);
+	background-size:5px 5px;
+
+	transition:all 0.5s;
+	opacity: 1;
+
+	.pageInner {
+		position: absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%, -50%);
+
+		background:#ffaf4b;
+		background: linear-gradient(to bottom, #febbbb 0%,#fe9090 45%,#ff5c5c 100%);
+		background: linear-gradient(to bottom, #ffaf4b 0%,#ff920a 100%);
+		border-radius:50%;
+		width:30em;
+		height:30em;
+		padding:5em;
+
+
+		text-align: center;
+		color:#2B2B2B;
+
+		h1 {
+			font-size:4em;
+
+		}
+
+		h2 {
+
+		}
+
+		p {
+			margin-top:2em;
+			width:50%;
+			margin-left:auto;
+			margin-right:auto;
+		}
+
+		.inputSelect {
+			margin-top:1em;
+			// background:#2B2B2B;
+			font-size:3em;
+			
+			line-height: 2em;
+			
+			text-align: center;
+
+			color:white;
+			position: absolute;
+
+
+
+			opacity: 0.6;
+
+			cursor:pointer;
+
+			&#phone {
+				right:3em;
+			}
+
+			&#mouse {
+				left:3em;
+			}
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&.disable {
+				opacity: 0.1;
+				pointer-events:none;
+			}
+
+		}
+	}
+
+	.codeDialog {
+
+		display:none;
+
+		position: fixed;
+		top:0px;
+		left:0px;
+		width:100%;
+		height:100%;
+
+		.dialogBackground {
+			position: absolute;
+			top:0px;
+			left:0px;
+			width:100%;
+			height:100%;
+
+			background-image:
+				radial-gradient(
+					circle,
+					rgba(0,0,0,0.7) 80%,
+					rgba(0,0,0,0.5) 0
+				);
+			background-size:5px 5px;
+			opacity: 0.8;
+
+		}
+
+		text-align: center;
+
+		.dialog {
+
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform:translate(-50%, -50%);
+			height:auto;
+			padding-top: 2em;
+			padding-bottom: 2em;
+			width:auto;
+			// margin-left:35%;
+
+			background:$grey-lighter;
+			background: linear-gradient(to bottom, #ffaf4b 0%,#ff920a 100%);
+
+			border-radius:3em;
+
+			h2 {
+				color:#2B2B2B;
+				font-size:2.2em;
+				line-height: 1em;
+				padding-left:1em;
+				padding-right:1em;
+				margin-bottom: 0.5em;
+			}
+
+			h3 {
+				color:#2B2B2B;
+				font-size: 1.5em;
+			}
+
+			input {
+				text-align: center;
+				letter-spacing: 1em;
+				font-size: 2.2em;
+				padding-left:2em;
+				padding-right:1em;
+				background:white;
+				padding-top:0.5em;
+				padding-bottom:0.5em;
+				border-radius: 0.2em;
+				color:#2B2B2B;
+			}
+
+			p {
+				padding-left:1em;
+				padding-right:1em;
+				margin-top:1em;
+				color:#2B2B2B;
+			}
+
+		}
+
+
+	 }
+
+
+}
