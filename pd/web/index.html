@@ -90,6 +90,11 @@
       };
 
       // Generated Parameter Update Methods
+      
+      function updateSlider_walkspeed(value) {
+        document.getElementById("display_walkspeed").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("walkspeed", value);
+      };
 
       var currentMousePos = { x: -1, y: -1 };
       $(document).mousemove(function(event) {
@@ -150,6 +155,15 @@
       <div>
         <button style="padding: 10px;" type="button" id="transportButton" onclick="toggleTransport(this);"/>
       </div>
+      
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_walkspeed" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_walkspeed(value);" oninput="updateSlider_walkspeed(value)">
+          </div>
+          <div class="cell" id="display_walkspeed"></div>
+          <div class="cell"><strong>walkspeed</strong></div>
+        </div>
         
       </div>
 
