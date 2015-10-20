@@ -5,7 +5,7 @@
     <title>test</title>
 
     <!-- Generated javascript library includes -->
-    <script type="application/javascript" src="./testLib.min.js"></script>
+    <script type="application/javascript" src="./out/testLib.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <style>
     .cell {
@@ -24,6 +24,8 @@
       var webAudioContext = null;
       var webAudioProcessor = null;
       var test = null;
+      var numberToDecode;
+      var decodedTable;
 
       window.onload = function(e) {
 
@@ -51,23 +53,19 @@
         document.getElementById("transportButton").textContent = "Play";
         isPlaying = false;
 
+        toggleTransport();
+
         // Generated Parameter Display Initialisations
-        updateSlider_pwmfreq(0.5);
-        updateSlider_note1(0.5);
-        updateSlider_ba(0.5);
-        updateSlider_pwmamt(0.5);
-        updateSlider_positions(0.5);
-        updateSlider_transpose(0.5);
-        updateSlider_listenerdirection(0.5);
-        updateSlider_listenery(0.5);
-        updateSlider_listenerx(0.5);
-        updateSlider_note0(0.5);
       };
 
       function hvPrintHook(message) {
-        console.log(message);
-        if (message[1] == "js-soundfiler") {
-
+        // console.log(message);
+        var parts = message.split(" ");
+        if (parts[1] == "js-soundfiler:") {
+          var table = parts[4];
+          var azimuth = parts[2];
+          var elevation = parts[3];
+          loadHRIR(table, azimuth, elevation)
         }
       };
 
@@ -93,54 +91,9 @@
 
       // Generated Parameter Update Methods
       
-      function updateSlider_pwmfreq(value) {
-        document.getElementById("display_pwmfreq").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("pwm-freq", value);
-      };
-      
-      function updateSlider_note1(value) {
-        document.getElementById("display_note1").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("note-1", value);
-      };
-      
-      function updateSlider_ba(value) {
-        document.getElementById("display_ba").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("ba", value);
-      };
-      
-      function updateSlider_pwmamt(value) {
-        document.getElementById("display_pwmamt").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("pwm-amt", value);
-      };
-      
-      function updateSlider_positions(value) {
-        document.getElementById("display_positions").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("positions", value);
-      };
-      
-      function updateSlider_transpose(value) {
-        document.getElementById("display_transpose").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("transpose", value);
-      };
-      
-      function updateSlider_listenerdirection(value) {
-        document.getElementById("display_listenerdirection").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("listener-direction", value);
-      };
-      
-      function updateSlider_listenery(value) {
-        document.getElementById("display_listenery").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("listener-y", value);
-      };
-      
-      function updateSlider_listenerx(value) {
-        document.getElementById("display_listenerx").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("listener-x", value);
-      };
-      
-      function updateSlider_note0(value) {
-        document.getElementById("display_note0").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("note-0", value);
+      function updateSlider_walkspeed(value) {
+        document.getElementById("display_walkspeed").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("walkspeed", value);
       };
 
       var currentMousePos = { x: -1, y: -1 };
@@ -155,67 +108,40 @@
       });
 
       // Load HRIRs
-      function loadHRIR() {
-        loadAudio("IRC_1018_C/IRC_1018_C_R0195_T"+azimuth+"_P"+elevation+".wav", "IR")
-      }
-
-      function setAzimuth(value) {
-        if (value<10) {
-          value="00"+value;
-        }else if(value<100){
-          value="0"+value;
-        }
-        azimuth = value;
-        loadHRIR();
-      }
-
-      function setElevation(value) {
-        if (value>3) {
-          value=parseInt(value)+17;
+      function loadHRIR(tableId, azimuth, elevation) {
+        if (azimuth<10) {
+          azimuth="00"+azimuth;
+        }else if(azimuth<100){
+          azimuth="0"+azimuth;
         }
         
-        value = value * 15;
-        if (value<10) {
-          value="00"+value;
-        }else if(value<100){
-          value="0"+value;
+        if (elevation<10) {
+          elevation="00"+elevation;
+        }else if(elevation<100){
+          elevation="0"+elevation;
         }
-        elevation = value;
-        loadHRIR();
-      }
 
-      function sendToHeavy(name, buffer, sampleName) {
-        var leftTable = test.getTableForName(sampleName+"-1");
-        leftTable.setBufferWithData(buffer.getChannelData(0));
-        var rightTable = test.getTableForName(sampleName+"-2");
-        rightTable.setBufferWithData(buffer.getChannelData(1));
-        console.log('Setting '+leftTable+' with '+buffer);
-        console.log('Setting§ '+rightTable+' with '+buffer);     
-      }
-
-      function decodingFinished(name, decodedBuffer, sampleName) {
-        decodedTable[name] = decodedBuffer;
-        if (numberToDecode == 0) {
-          for (var name in decodedTable) {
-            console.log("sending " + name + " to heavy");
-            sendToHeavy(name, decodedTable[name], sampleName);
-          }
-        }
-      }
-
-      function loadAudio(url, sampleName) {
-        // url = "audio/"+sampleName+".mp3";
+        var url = "IRC_1018_C/IRC_1018_C_R0195_T"+azimuth+"_P"+elevation+".wav";
+        
         var rq = new XMLHttpRequest();
         rq.open("GET", url, true);
         rq.responseType = "arraybuffer";
         rq.send();
 
+        // console.log("Loading HRIR "+tableId+azimuth+elevation);
+
         rq.onload = function() {
           var audioData = rq.response;
           webAudioContext.decodeAudioData(audioData, function(buffer){
-            console.log("Finished loading "+url);
-            numberToDecode--;
-            decodingFinished(url, buffer, sampleName);
+
+            var leftTable = test.getTableForName(tableId+"-leftIR");
+            leftTable.setBufferWithData(buffer.getChannelData(0));
+            // console.log('Setting '+JSON.stringify(leftTable)+' with '+buffer);
+
+            var rightTable = test.getTableForName(tableId+"-rightIR");
+            rightTable.setBufferWithData(buffer.getChannelData(1));
+            // console.log('Setting '+JSON.stringify(rightTable)+' with '+buffer);  
+
           });
         }
       }
@@ -229,87 +155,14 @@
       <div>
         <button style="padding: 10px;" type="button" id="transportButton" onclick="toggleTransport(this);"/>
       </div>
-
-      <div class="table"> <!-- Generated Parameters -->
+      
         
         <div class="row">
           <div class="cell">
-            <input id="slider_pwmfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmfreq(value);" oninput="updateSlider_pwmfreq(value)">
+            <input id="slider_walkspeed" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_walkspeed(value);" oninput="updateSlider_walkspeed(value)">
           </div>
-          <div class="cell" id="display_pwmfreq"></div>
-          <div class="cell"><strong>pwm-freq</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_note1" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note1(value);" oninput="updateSlider_note1(value)">
-          </div>
-          <div class="cell" id="display_note1"></div>
-          <div class="cell"><strong>note-1</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_ba" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_ba(value);" oninput="updateSlider_ba(value)">
-          </div>
-          <div class="cell" id="display_ba"></div>
-          <div class="cell"><strong>ba</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_pwmamt" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmamt(value);" oninput="updateSlider_pwmamt(value)">
-          </div>
-          <div class="cell" id="display_pwmamt"></div>
-          <div class="cell"><strong>pwm-amt</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_positions" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_positions(value);" oninput="updateSlider_positions(value)">
-          </div>
-          <div class="cell" id="display_positions"></div>
-          <div class="cell"><strong>positions</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_transpose" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_transpose(value);" oninput="updateSlider_transpose(value)">
-          </div>
-          <div class="cell" id="display_transpose"></div>
-          <div class="cell"><strong>transpose</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_listenerdirection" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenerdirection(value);" oninput="updateSlider_listenerdirection(value)">
-          </div>
-          <div class="cell" id="display_listenerdirection"></div>
-          <div class="cell"><strong>listener-direction</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_listenery" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenery(value);" oninput="updateSlider_listenery(value)">
-          </div>
-          <div class="cell" id="display_listenery"></div>
-          <div class="cell"><strong>listener-y</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_listenerx" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenerx(value);" oninput="updateSlider_listenerx(value)">
-          </div>
-          <div class="cell" id="display_listenerx"></div>
-          <div class="cell"><strong>listener-x</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_note0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_note0(value);" oninput="updateSlider_note0(value)">
-          </div>
-          <div class="cell" id="display_note0"></div>
-          <div class="cell"><strong>note-0</strong></div>
+          <div class="cell" id="display_walkspeed"></div>
+          <div class="cell"><strong>walkspeed</strong></div>
         </div>
         
       </div>
