@@ -26,6 +26,7 @@ class TuneInApp
 
 		@map = new MapView($("map"))
 		@audio = new HeavyAudioInterface(testLib)
+		Main.audio = @audio
 
 		@introPage = new IntroPage()
 
@@ -96,8 +97,8 @@ class TuneInApp
 			elevation = data.parts[3]
 
 			tableId = tableId
-			azimuth = Utils.padZero3(azimuth)
-			elevation = Utils.padZero3(elevation)
+			azimuth = Utils.padZeros3(azimuth)
+			elevation = Utils.padZeros3(elevation)
 
 			url = "./audio/IRC_1018_C/IRC_1018_C_R0195_T#{azimuth}_P#{elevation}.wav"
 			@audio.addSampleToQueue(tableId, url)

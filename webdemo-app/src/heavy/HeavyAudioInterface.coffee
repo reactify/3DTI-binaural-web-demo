@@ -50,7 +50,7 @@ class HeavyAudioInterface extends AudioInterface
 		# 	)
 
 	addSampleToQueue:(sampleId, sampleUrl)=>
-		console.log "pushing sample #{sampleName} from url #{sampleUrl} to queue"
+		console.log "pushing sample #{sampleId} from url #{sampleUrl} to queue"
 		SAMPLE_LIST.push({
 			id : sampleId
 			url : sampleUrl
