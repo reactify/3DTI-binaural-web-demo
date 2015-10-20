@@ -77,12 +77,13 @@ class TuneInApp
 		@introPage.on("loaded", @onIntroLoaded)
 
 	onIntroLoaded:()=>
-		@introPage.show()
+		# @introPage.show()
+		@scene.enableControls()
 		@loaded = true
-		@introPage.on("hide", ()=>
+		# @introPage.on("hide", ()=>
 			
-			@scene.enableControls()
-			)
+		# 	@scene.enableControls()
+		# 	)
 		
 	
 	onUserPositionChange:(data)=>

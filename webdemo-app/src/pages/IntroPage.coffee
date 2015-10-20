@@ -52,9 +52,8 @@ class IntroPage extends Page
 
 	hide:()=>
 		
-		@inputMethod.classList.remove "visible"
+		# @inputMethod.classList.remove "visible"
 
-		@element.classList.remove("visible")
 
 		setTimeout(()=>
 			super

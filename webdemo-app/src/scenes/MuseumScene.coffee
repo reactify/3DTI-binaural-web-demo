@@ -158,7 +158,7 @@ class MuseumScene extends Scene
 					@walls.push wallUnit
 				else if a != "0"
 					# create sound source here
-					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 5, 5), new THREE.MeshLambertMaterial({ color : 0xffaf4b }))
+					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 12,12), new THREE.MeshLambertMaterial({ color : 0xffaf4b }))
 					newSource.position.x = (x - @mapWidth/2) * UNITSIZE
 					newSource.position.y = WALLHEIGHT/2
 					newSource.position.z = (y - @mapHeight/2) * UNITSIZE

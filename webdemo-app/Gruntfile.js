@@ -44,6 +44,9 @@ module.exports = function(grunt) {
 			compile : {
 				cmd : "node_modules/.bin/browserify -t coffeeify src/main.coffee --debug > public/js/main.js"
 			},
+			compileMobile : {
+				cmd : "node_modules/.bin/browserify -t coffeeify src/main.mobile.coffee --debug > public/js/main.mobile.js"
+			}
 		},
 		nodemon: {
 
@@ -109,7 +112,7 @@ module.exports = function(grunt) {
 				files : [
 					"src/**/*.coffee"
 				],
-				tasks : ['exec:compile']
+				tasks : ['exec:compile', 'exec:compileMobile']
 			},
 			livereload: {
 				files: [
@@ -126,7 +129,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', function(target){
-		grunt.task.run(['exec:compile', 'concurrent:dev'])
+		grunt.task.run(['exec:compile', 'exec:compileMobile', 'concurrent:dev'])
 	});
 
 };
