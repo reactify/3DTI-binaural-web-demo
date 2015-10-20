@@ -1,5 +1,6 @@
 
 Config = require "../config/Config.coffee"
+Utils = require "../utils/Utils.coffee"
 Renderer = require "../gfx/Renderer.coffee"
 
 HeavyAudioInterface = require "../heavy/HeavyAudioInterface.coffee"
@@ -49,6 +50,7 @@ class TuneInApp
 		@scene.on "userAngle", @onUserAngleChange
 
 		@audio.on "loaded", @onAudioLoaded
+		@audio.on "message", @onAudioMessage
 		@audio.init()
 		
 
@@ -84,8 +86,23 @@ class TuneInApp
 			
 		# 	@scene.enableControls()
 		# 	)
-		
-	
+
+
+	onAudioMessage:(data)=>
+		if data.address == "js-soundfiler:"
+			# received instruction from PD to load a new IR
+			tableId = data.parts[4]
+			azimuth = data.parts[2]
+			elevation = data.parts[3]
+
+			tableId = tableId
+			azimuth = Utils.padZero3(azimuth)
+			elevation = Utils.padZero3(elevation)
+
+			url = "./audio/IRC_1018_C/IRC_1018_C_R0195_T#{azimuth}_P#{elevation}.wav"
+			@audio.addSampleToQueue(tableId, url)
+			@audio.loadNextAudio()
+
 	onUserPositionChange:(data)=>
 		@map.setUserPosition(data.x, data.y)
 		@audio.sendFloat "listener-x", data.x * 32

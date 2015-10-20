@@ -1,5 +1,6 @@
 AudioInterface = require "./AudioInterface.coffee"
 
+# should be of the form { id : [some id], url : [complete URL]}
 SAMPLE_LIST = [
 ]
 
@@ -48,25 +49,35 @@ class HeavyAudioInterface extends AudioInterface
 		# 	@emit "message", { address : oscMessage[0].replace(/\//g, ""), value : oscMessage[1] }
 		# 	)
 
+	addSampleToQueue:(sampleId, sampleUrl)=>
+		console.log "pushing sample #{sampleName} from url #{sampleUrl} to queue"
+		SAMPLE_LIST.push({
+			id : sampleId
+			url : sampleUrl
+			})
 	
 	loadNextAudio:()=>
 		if SAMPLE_LIST.length
 			@currentSample = SAMPLE_LIST.pop()
-			url = "./assets/audio/" + @currentSample + ".mp3" + "?rnd=" + Math.floor(Math.random() * 10000)
-			@rq.open("GET", url, true)
+
+			# url = "./assets/audio/" + @currentSample.id + @fileExtension + "?rnd=" + Math.floor(Math.random() * 10000)
+			
+			@rq.open("GET", @currentSample.url, true)
 			@rq.responseType = "arraybuffer"
 			@rq.send()
 
-		else
+		else if not @loaded
 			@loaded = true
 			@processor.connect @gainNode
 			@patch.sendFloatToReceiver("tick-on", 1.0);
 			@emit "loaded", null
+		else
+			@emit "allAudioLoaded", null
 
 	_rqOnLoad:()=>
 		audioData = @rq.response
 		@context.decodeAudioData(audioData, (buffer)=>
-			console.log "Finished loading #{@currentSample}"
+			console.log "Finished loading #{@currentSample.id}"
 			console.log "normal length "
 			if buffer.sampleRate != @context.sampleRate
 				@_convertSample(buffer, (resampledBuffer)=>
@@ -83,13 +94,13 @@ class HeavyAudioInterface extends AudioInterface
 		@emit "loadProgress", sampleLoadProgress
 
 	_sendCurrentToHeavy:(buffer)=>
-		table = @patch.getTableForName(@currentSample + "-1")
+		table = @patch.getTableForName(@currentSample.id + "-1")
 		table.setBufferWithData(buffer.getChannelData(0))
-		table = @patch.getTableForName(@currentSample + "-2")
+		table = @patch.getTableForName(@currentSample.id + "-2")
 		table.setBufferWithData(buffer.getChannelData(1))
 
 	_convertSample:(buffer, callback)=>
-		console.log "Resampling #{@currentSample} from #{buffer.sampleRate} to #{@context.sampleRate}"
+		console.log "Resampling #{@currentSample.id} from #{buffer.sampleRate} to #{@context.sampleRate}"
 		resamplingRate = @context.sampleRate / buffer.sampleRate
 		outputLength = buffer.length * resamplingRate
 		
@@ -120,20 +131,18 @@ class HeavyAudioInterface extends AudioInterface
 
 		console.log "message from heavy; address : #{address}, value : #{value}"
 		
-		@emit "message", { address : address, value : value }
+		@emit "message", { address : address, value : value, parts : parts }
 
 	_sendHook:(message)=>
 		console.log message
-
-		# (0.00) A-uke-playing: 1
-
 		parts = message.split(" ")
 		address = parts[1].replace(/\:/g, "")
 		value = parseFloat(parts[2])
 
 		console.log "message from heavy; address : #{address}, value : #{value}"
 		
-		@emit "message", { address : address, value : value }
+		@emit "message", { address : address, value : value, parts : parts }
+		
 	end:()->
 
 		# play ending
