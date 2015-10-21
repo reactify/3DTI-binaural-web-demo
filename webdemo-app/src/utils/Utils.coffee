@@ -7,6 +7,8 @@ Utils.padZeros3 = (number)->
 		return "00" + number
 	if number < 100
 		return "0" + number
+	if number > 100
+		return number
 
 Utils.dr = (degrees)->
 	return degrees * (Math.PI / 180.0)
