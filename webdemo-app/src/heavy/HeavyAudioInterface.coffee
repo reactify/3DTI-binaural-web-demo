@@ -94,9 +94,9 @@ class HeavyAudioInterface extends AudioInterface
 		@emit "loadProgress", sampleLoadProgress
 
 	_sendCurrentToHeavy:(buffer)=>
-		table = @patch.getTableForName(@currentSample.id + "-1")
+		table = @patch.getTableForName(@currentSample.id + "-leftIR")
 		table.setBufferWithData(buffer.getChannelData(0))
-		table = @patch.getTableForName(@currentSample.id + "-2")
+		table = @patch.getTableForName(@currentSample.id + "-rightIR")
 		table.setBufferWithData(buffer.getChannelData(1))
 
 	_convertSample:(buffer, callback)=>
@@ -163,7 +163,7 @@ class HeavyAudioInterface extends AudioInterface
 			console.error "tried to send float to inlet #{inlet} before patch was loaded"
 			return
 
-		console.log "sending float #{value} to #{inlet}"
+		# console.log "sending float #{value} to #{inlet}"
 		@patch.sendFloatToReceiver inlet, value
 
 
