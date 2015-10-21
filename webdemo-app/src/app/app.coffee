@@ -90,7 +90,7 @@ class TuneInApp
 
 
 	onAudioMessage:(data)=>
-		if data.address == "js-soundfiler:"
+		if data.address == "js-soundfiler"
 			# received instruction from PD to load a new IR
 			tableId = data.parts[4]
 			azimuth = data.parts[2]
