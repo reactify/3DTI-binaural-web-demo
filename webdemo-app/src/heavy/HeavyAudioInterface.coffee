@@ -1,8 +1,12 @@
+Utils = require "../utils/Utils.coffee"
 AudioInterface = require "./AudioInterface.coffee"
 
 # should be of the form { id : [some id], url : [complete URL]}
 SAMPLE_LIST = [
+
 ]
+
+
 
 NUM_SAMPLES = SAMPLE_LIST.length
 
@@ -39,6 +43,17 @@ class HeavyAudioInterface extends AudioInterface
 			@patch.process(e)
 	
 	init:()->
+		for i in [0...24]
+			for j in [0...7]
+				if j > 3
+					j = j+17
+				irName = "T"+Utils.padZeros3(i*15)+"_P"+Utils.padZeros3(j*15)
+				irURL = "./audio/IRC_1018_C/IRC_1018_C_R0195_"+irName+".wav"
+				console.log "pushing sample #{irName} from url #{irURL} to queue"
+				SAMPLE_LIST.push({
+					id : irName
+					url : irURL
+				})
 
 		@rq = new XMLHttpRequest()
 		@rq.onload = @_rqOnLoad
@@ -94,9 +109,9 @@ class HeavyAudioInterface extends AudioInterface
 		@emit "loadProgress", sampleLoadProgress
 
 	_sendCurrentToHeavy:(buffer)=>
-		table = @patch.getTableForName(@currentSample.id + "-leftIR")
+		table = @patch.getTableForName(@currentSample.id + "-1")
 		table.setBufferWithData(buffer.getChannelData(0))
-		table = @patch.getTableForName(@currentSample.id + "-rightIR")
+		table = @patch.getTableForName(@currentSample.id + "-2")
 		table.setBufferWithData(buffer.getChannelData(1))
 
 	_convertSample:(buffer, callback)=>
@@ -163,8 +178,17 @@ class HeavyAudioInterface extends AudioInterface
 			console.error "tried to send float to inlet #{inlet} before patch was loaded"
 			return
 
-		# console.log "sending float #{value} to #{inlet}"
+		console.log "sending float #{value} to #{inlet}"
 		@patch.sendFloatToReceiver inlet, value
+
+	sendString:(inlet, value)->
+
+		if not @loaded 
+			console.error "tried to send string to inlet #{inlet} before patch was loaded"
+			return
+
+		console.log "sending string #{value} to #{inlet}"
+		@patch.sendStringToReceiver inlet, value
 
 
 

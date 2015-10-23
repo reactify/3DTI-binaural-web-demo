@@ -68,6 +68,7 @@ module.exports = function(grunt) {
 		concurrent: {
 			dev: {
 				tasks: ['watch', 'http-server:dev'],
+				// tasks: ['watch'],
 				options: {
 					logConcurrentOutput: true,
 					limit: 5

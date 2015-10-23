@@ -73,6 +73,9 @@ class TuneInApp
 		@audio.sendFloat "kick", 0.5
 		@audio.sendFloat "note-0", 0.5
 
+
+		@audio.sendString "test", "test"
+
 		@audio.reset()
 		@renderer.init(@scene.scene, @scene.camera)
 		
@@ -101,16 +104,24 @@ class TuneInApp
 			elevation = Utils.padZeros3(elevation)
 
 			url = "./audio/IRC_1018_C/IRC_1018_C_R0195_T#{azimuth}_P#{elevation}.wav"
-			@audio.addSampleToQueue(tableId, url)
-			@audio.loadNextAudio()
+
+			concatString1 = "T#{azimuth}_P#{elevation}-1"
+			concatString2 = "T#{azimuth}_P#{elevation}-2"
+			receiver1 = "#{tableId}-conv-1"
+			receiver2 = "#{tableId}-conv-2"
+			@audio.sendString receiver1, concatString1
+			@audio.sendString receiver2, concatString2
+
+			# @audio.addSampleToQueue(tableId, url)
+			# @audio.loadNextAudio()
 
 	onUserPositionChange:(data)=>
-		@map.setUserPosition(data.x, data.y)
+		# @map.setUserPosition(data.x, data.y)
 		@audio.sendFloat "listener-x", data.x * 32
 		@audio.sendFloat "listener-y", data.y * 32
 
 	onUserAngleChange:(angle)=>
-		@map.setUserAngle(angle)
+		# @map.setUserAngle(angle)
 		
 		# angle conversion for pd
 		angle-=90
