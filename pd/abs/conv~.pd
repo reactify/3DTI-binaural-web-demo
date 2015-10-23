@@ -2,5 +2,6 @@
 #X obj 130 105 inlet~;
 #X obj 130 127 FIR~ \$1 \$2;
 #X obj 130 149 outlet~;
+#X obj 225 105 inlet tablename;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
