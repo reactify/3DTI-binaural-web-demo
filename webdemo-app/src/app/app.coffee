@@ -116,12 +116,12 @@ class TuneInApp
 			# @audio.loadNextAudio()
 
 	onUserPositionChange:(data)=>
-		# @map.setUserPosition(data.x, data.y)
+		@map.setUserPosition(data.x, data.y)
 		@audio.sendFloat "listener-x", data.x * 32
 		@audio.sendFloat "listener-y", data.y * 32
 
 	onUserAngleChange:(angle)=>
-		# @map.setUserAngle(angle)
+		@map.setUserAngle(angle)
 		
 		# angle conversion for pd
 		angle-=90

@@ -39,6 +39,9 @@ class MuseumScene extends Scene
 
 		@reportPositionId = -1
 
+		@lastPosition = null
+		@lastAngle = null
+
 	init:(@mapURL)=>
 		super
 
@@ -274,6 +277,8 @@ class MuseumScene extends Scene
 		@velocity.x *= 0.9
 		@velocity.z *= 0.9
 
+		# keyboard control
+
 		if @moving.backward
 			@velocity.z -= SPEED_STEP
 			@velocity.z = Math.max @velocity.z, MAX_VELOCITY
@@ -286,6 +291,8 @@ class MuseumScene extends Scene
 		if @moving.left
 			@velocity.x -= -SPEED_STEP
 			@velocity.x = Math.min @velocity.x, -MAX_VELOCITY
+
+		# phone control
 
 		# find out which square we're in, and bounce off if we're in a wall
 		@mapX = Math.floor(@controls.getObject().position.x / (UNITSIZE)) + @mapWidth/2
@@ -316,7 +323,14 @@ class MuseumScene extends Scene
 		positionZ = ((@controls.getObject().position.z / UNITSIZE) + @mapHeight/2) / @mapHeight
 
 
-		@emit "userPosition", { x : positionX, y : positionZ }
+		if @lastPosition
+			# only report position change if delta has changed significantly
+			if (Math.abs(@lastPosition.x - positionX) > 0.01) or (Math.abs(@lastPosition.z - positionZ) > 0.01)
+				@lastPosition = { x : positionX, y : positionZ }
+				@emit "userPosition", @lastPosition
+				
+		else
+			@lastPosition = { x : positionX, y : positionZ }
 
 		# angle
 		refVec = new THREE.Vector3(0,0,1)
@@ -327,7 +341,11 @@ class MuseumScene extends Scene
 		angle += 180
 		# console.log angle
 
-		@emit "userAngle", angle
+		if @lastAngle
+			if Math.abs(@lastAngle - angle) > 0.1
+				@lastAngle = angle
+				@emit "userAngle", angle
+		else @lastAngle = angle
 
 
 
