@@ -66,12 +66,16 @@
       gameData = games[gameId];
       gameData.phoneSocket = socket;
       if (gameData.browserSocket) {
-        gameData.phoneSocket.on("motion", function(motionData) {
-          return gameData.browserSocket.emit("motion", motionData);
+        gameData.phoneSocket.on("look", function(motionData) {
+          return gameData.browserSocket.emit("look", motionData);
         });
-        gameData.phoneSocket.on("click", function(clickData) {
-          console.log("click from phone");
-          return gameData.browserSocket.emit("click", clickData);
+        gameData.phoneSocket.on("step", function(stepData) {
+          console.log("step from phone");
+          return gameData.browserSocket.emit("step", stepData);
+        });
+        gameData.phoneSocket.on("strafe", function(direction) {
+          console.log("strafe from phone");
+          return gameData.browserSocket.emit("strafe", direction);
         });
         gameData.phoneSocket.on("signal", function(signalData) {
           console.log("signal from phone : " + signalData);

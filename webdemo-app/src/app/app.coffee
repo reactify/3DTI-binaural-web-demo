@@ -8,6 +8,8 @@ HeavyAudioInterface = require "../heavy/HeavyAudioInterface.coffee"
 MuseumScene = require "../scenes/MuseumScene.coffee"
 # DisplaySocketHandler = require "../display/DisplaySocketHandler.coffee"
 
+PhoneController = require "../mobile/PhoneController.coffee"
+
 DebugView = require "../debug/DebugView.coffee"
 MapView = require "../mapView/MapView.coffee"
 
@@ -53,7 +55,12 @@ class TuneInApp
 		@audio.on "loaded", @onAudioLoaded
 		@audio.on "message", @onAudioMessage
 		@audio.init()
-		
+
+		@phoneInterface = new PhoneController()
+		@phoneInterface.init()
+		@phoneInterface.on "step", @scene.onPhoneStep
+		@phoneInterface.on "strafe", @scene.onPhoneStrafe
+		@phoneInterface.on "look", @scene.onPhoneLook
 
 	onAudioLoaded:()=>
 

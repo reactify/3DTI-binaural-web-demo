@@ -64,12 +64,16 @@ addPhoneToGame = (gameId, socket)=>
 	gameData.phoneSocket = socket
 
 	if gameData.browserSocket
-		gameData.phoneSocket.on("motion", (motionData)=>
-			gameData.browserSocket.emit("motion", motionData)
+		gameData.phoneSocket.on("look", (motionData)=>
+			gameData.browserSocket.emit("look", motionData)
 			)
-		gameData.phoneSocket.on("click", (clickData)=>
-			console.log "click from phone"
-			gameData.browserSocket.emit("click", clickData)
+		gameData.phoneSocket.on("step", (stepData)=>
+			console.log "step from phone"
+			gameData.browserSocket.emit("step", stepData)
+			)
+		gameData.phoneSocket.on("strafe", (direction)=>
+			console.log "strafe from phone"
+			gameData.browserSocket.emit("strafe", direction)
 			)
 		gameData.phoneSocket.on("signal", (signalData)=>
 			console.log "signal from phone : #{signalData}"

@@ -322,6 +322,7 @@ input {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\000031}}
 .mobile {
+  overflow: hidden;
   background: linear-gradient(to bottom, #ffaf4b 0%, #ff920a 100%);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -330,7 +331,7 @@ input {
   -ms-user-select: none;
   user-select: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000314}}
 .mobile #ui {
   position: absolute;
   top: 0px;
@@ -338,7 +339,7 @@ input {
   width: 100%;
   height: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000319}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000321}}
 .mobile #ui #uiBackground {
   position: absolute;
   top: 0px;
@@ -346,7 +347,7 @@ input {
   width: 100%;
   height: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000329}}
 .mobile #ui .indicator {
   position: absolute;
   top: 60%;
@@ -355,4 +356,53 @@ input {
   width: 80px;
   height: 80px;
   border: 1px solid red;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000343}}
+.mobile #ui #controls .footController {
+  background-image: url("../images/footprint.svg");
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 25%;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000355}}
+.mobile #ui #controls .footController#leftFoot {
+  left: 0px;
+  border-right: 1px dashed white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000359}}
+.mobile #ui #controls .footController#rightFoot {
+  right: 0px;
+  border-left: 1px dashed white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000364}}
+.mobile #ui #controls .footController:hover, .mobile #ui #controls .footController:active {
+  background-color: rgba(255, 175, 75, 0.9);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000369}}
+.mobile #ui #controls .lookController {
+  width: 50%;
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  left: 25%;
+  background-image: url("../images/eye.svg");
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/owenhindley\/Documents\/workspace\/projects\/RFM_003_TuneIn_POC\/3DTI-binaural-web-demo\/webdemo-app\/src\/scss\/mobile\/_mobile\.scss}line{font-family:\0000381}}
+.mobile #ui #controls .lookController #lookIndicator {
+  display: none;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid white;
 }

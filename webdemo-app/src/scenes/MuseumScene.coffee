@@ -26,6 +26,7 @@ class MuseumScene extends Scene
 		}
 
 		@velocity = new THREE.Vector3()
+		@phoneLookVelocity = new THREE.Vector3()
 			
 		@controls = new THREE.PointerLockControls(@camera)
 		@scene.add @controls.getObject()
@@ -295,6 +296,27 @@ class MuseumScene extends Scene
 
 		@mouseButton = false
 
+
+	onPhoneStep:(stepSize)=>
+		console.log "step from phone : #{stepSize}"
+		@velocity.z += SPEED_STEP * stepSize * 100
+		@velocity.z = Math.min @velocity.z, -MAX_VELOCITY
+
+	onPhoneStrafe:(direction)=>
+		console.log "strafe from phone : #{direction}"
+		if direction
+			@velocity.x -= SPEED_STEP * 100
+			@velocity.x = Math.max @velocity.x, MAX_VELOCITY
+		else
+			@velocity.x -= -SPEED_STEP * 100
+			@velocity.x = Math.min @velocity.x, -MAX_VELOCITY
+
+	onPhoneLook:(lookData)=>
+
+		@phoneLookVelocity.y = lookData.x * 0.05
+		@phoneLookVelocity.x = lookData.y * 0.05
+
+
 	getRandomColorHex:()=>
 		return 0xff0000
 		# return '#'+Math.floor(Math.random()*16777215).toString(16)
@@ -322,6 +344,9 @@ class MuseumScene extends Scene
 			@velocity.x = Math.min @velocity.x, -MAX_VELOCITY
 
 		# phone control
+
+		@controls.getObject().rotation.y -= @phoneLookVelocity.y
+		@controls.getPitchObject().rotation.x -= @phoneLookVelocity.x
 
 		# find out which square we're in, and bounce off if we're in a wall
 		@mapX = Math.floor(@controls.getObject().position.x / (UNITSIZE)) + @mapWidth/2

@@ -6,7 +6,7 @@
 		<link type="text/css" rel="stylesheet" href="css/main.css" />
 		<!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		// <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="viewport" content="height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 
 		<script src="js/main.mobile.js"></script>
@@ -17,10 +17,14 @@
 		<div id="container">
 
 			<div id="ui">
-				<canvas id="uiBackground"></canvas>
-				<div id="origin" class="indicator"></div>
-				<canvas class="indicator" id="touch"></canvas>
+				<div id="controls">
+					<div class="footController" id="leftFoot"></div>				
+					<div class="footController" id="rightFoot"></div>
+					<div class="lookController" id="lookControl">
+						<div id="lookIndicator"></div>
 
+					</div>
+				</div>
 			</div>
 
 			<div class="codeDialog" id="mobileDialog">
