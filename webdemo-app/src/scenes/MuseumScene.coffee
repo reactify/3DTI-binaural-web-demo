@@ -124,7 +124,7 @@ class MuseumScene extends Scene
 		wallCube = new THREE.BoxGeometry(UNITSIZE, WALLHEIGHT, UNITSIZE)
 		wallBase = new THREE.BoxGeometry(UNITSIZE * 1.1, WALLHEIGHT/20, UNITSIZE * 1.1)
 
-		wallMaterial = new THREE.MeshLambertMaterial({ color : 0xebebeb })
+		# wallMaterial = new THREE.MeshLambertMaterial({ color : 0xebebeb })
 
 		materialGround1 = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true, vertexColors: THREE.FaceColors } )
 		materialGround1.side = THREE.DoubleSided
@@ -133,32 +133,50 @@ class MuseumScene extends Scene
 		materialGround.emissive.setHSL( 0, 0, 0.35 )
 		materialGround1.emissive.setHSL( 0, 0, 0.55 )
 
+		@wallsMerged = new THREE.Geometry()
 
 		for y in [0..@mapData.length-1] by 1
 			for x in [0..@mapData[y].length-1] by 1
 				a = @mapData[y][x]
 				if a == "1"
 					# create wall here
-					wallUnit = new THREE.Object3D()
+					wallUnit = new THREE.Geometry()
 
-					newWall = new THREE.Mesh(wallCube, @wallMaterial)
-					wallUnit.add newWall
+					newWall = new THREE.Mesh(wallCube)
+					newWall.position.x = (x - @mapWidth/2) * UNITSIZE
+					newWall.position.z = (y - @mapHeight/2) * UNITSIZE
+					newWall.position.y = WALLHEIGHT/2
+					newWall.updateMatrix()
+					# wallUnit.add newWall
 
-					newWallBase = new THREE.Mesh(wallBase,  @wallMaterial)
-					wallUnit.add newWallBase
-					newWallBase.position.y = -WALLHEIGHT/2 + WALLHEIGHT/40
+					newWallBase = new THREE.Mesh(wallBase)
+					# wallUnit.add newWallBase
+					newWallBase.position.y = WALLHEIGHT/40
+					newWallBase.position.x = (x - @mapWidth/2) * UNITSIZE
+					newWallBase.position.z = (y - @mapHeight/2) * UNITSIZE
+					newWallBase.updateMatrix()
 
-					newWallTop = new THREE.Mesh(wallBase, @wallMaterial)
-					wallUnit.add newWallTop
-					newWallTop.position.y = WALLHEIGHT/2
+					newWallTop = new THREE.Mesh(wallBase)
+					# wallUnit.add newWallTop
+					newWallTop.position.y = WALLHEIGHT - WALLHEIGHT/40
+					newWallTop.position.x = (x - @mapWidth/2) * UNITSIZE
+					newWallTop.position.z = (y - @mapHeight/2) * UNITSIZE
+					newWallTop.updateMatrix()
 
-					wallUnit.position.x = (x - @mapWidth/2) * UNITSIZE
-					wallUnit.position.y = WALLHEIGHT/2
-					wallUnit.position.z = (y - @mapHeight/2) * UNITSIZE
+					wallUnit.merge(newWall.geometry, newWall.matrix)
+					wallUnit.merge(newWallBase.geometry, newWallBase.matrix)
+					wallUnit.merge(newWallTop.geometry, newWallTop.matrix)
 
+					# wallUnit.position.x = (x - @mapWidth/2) * UNITSIZE
+					# wallUnit.position.y = WALLHEIGHT/2
+					# wallUnit.position.z = (y - @mapHeight/2) * UNITSIZE
 
-					@scene.add wallUnit
-					@walls.push wallUnit
+					# newWall = new THREE.Mesh(wallUnit, @wallMaterial)
+					# newWall.updateMatrix()
+
+					@wallsMerged.merge(wallUnit)
+
+					# @walls.push wallUnit
 				else if a != "0"
 					# create sound source here
 					newSource = new THREE.Mesh(new THREE.SphereGeometry(UNITSIZE/4, 12,12), new THREE.MeshLambertMaterial({ color : 0xffaf4b }))
@@ -167,6 +185,10 @@ class MuseumScene extends Scene
 					newSource.position.z = (y - @mapHeight/2) * UNITSIZE
 					@scene.add newSource
 					@soundSources.push newSource
+
+		# add walls
+		@wallsMesh = new THREE.Mesh(@wallsMerged, @wallMaterial)
+		@scene.add @wallsMesh
 
 		# dummy wall at 0,0
 		# newWall = new THREE.Mesh(wallCube, materialGround1)
@@ -187,6 +209,8 @@ class MuseumScene extends Scene
 				TILE_SCALE_2 = 2
 				TILE_SCALE_3 = TILE_SCALE_1 * TILE_SCALE_2
 				NUM_TILES = @mapHeight / TILE_SCALE_2
+
+				@ceilingMerged = new THREE.Geometry()
 				
 				for x in [0..(NUM_TILES)] by 1
 					for y in [0..(NUM_TILES)] by 1
@@ -202,7 +226,12 @@ class MuseumScene extends Scene
 						else if idx > 0.7
 							newCeilingTile.rotation.y = Math.PI
 						
-						@scene.add newCeilingTile
+						newCeilingTile.updateMatrix()
+						@ceilingMerged.merge(newCeilingTile.geometry, newCeilingTile.matrix)
+						# @scene.add newCeilingTile
+
+				@ceilingMesh = new THREE.Mesh(@ceilingMerged, materialGround1)
+				@scene.add @ceilingMesh
 
 				callback()
 
