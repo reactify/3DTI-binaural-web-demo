@@ -1,4 +1,4 @@
-#N canvas 324 162 950 540 10;
+#N canvas 120 166 950 540 10;
 #X declare -path abs;
 #X obj 41 275 dac~;
 #X text 815 133 y1;
@@ -986,7 +986,7 @@
 #X obj 611 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 164 160 rm_fir-binaural-hv2;
-#N canvas 98 119 240 572 ir-tables 1;
+#N canvas 98 119 240 572 ir-tables 0;
 #X obj 73 494 ir-tables T345;
 #X obj 73 114 ir-tables T060;
 #X obj 73 354 ir-tables T240;
@@ -1012,9 +1012,9 @@
 #X obj 73 454 ir-tables T315;
 #X obj 73 474 ir-tables T330;
 #X restore 340 85 pd ir-tables;
-#X obj 41 160 rm_fir-binaural-hv2;
 #X obj 376 274 r test;
 #X obj 376 296 print toTest;
+#X obj 41 160 rm_fir-binaural-hv2;
 #X connect 3 0 5 0;
 #X connect 4 0 6 0;
 #X connect 8 0 16 0;
@@ -1034,24 +1034,24 @@
 #X connect 17 0 10 0;
 #X connect 17 0 11 0;
 #X connect 18 0 17 0;
-#X connect 19 0 56 0;
-#X connect 19 1 56 1;
+#X connect 19 0 58 0;
+#X connect 19 1 58 1;
 #X connect 19 2 54 0;
 #X connect 19 3 54 1;
-#X connect 20 0 56 0;
-#X connect 20 1 56 1;
+#X connect 20 0 58 0;
+#X connect 20 1 58 1;
 #X connect 20 2 54 0;
 #X connect 20 3 54 1;
 #X connect 21 0 9 0;
 #X connect 22 0 9 0;
 #X connect 24 0 0 0;
 #X connect 24 0 0 1;
-#X connect 25 0 56 0;
-#X connect 25 1 56 1;
+#X connect 25 0 58 0;
+#X connect 25 1 58 1;
 #X connect 25 2 54 0;
 #X connect 25 3 54 1;
 #X connect 26 0 54 1;
-#X connect 26 0 56 1;
+#X connect 26 0 58 1;
 #X connect 27 0 26 0;
 #X connect 28 0 32 0;
 #X connect 29 0 34 0;
@@ -1084,6 +1084,6 @@
 #X connect 53 0 16 0;
 #X connect 54 0 0 0;
 #X connect 54 1 0 1;
-#X connect 56 0 0 0;
-#X connect 56 1 0 1;
-#X connect 57 0 58 0;
+#X connect 56 0 57 0;
+#X connect 58 0 0 0;
+#X connect 58 1 0 1;
