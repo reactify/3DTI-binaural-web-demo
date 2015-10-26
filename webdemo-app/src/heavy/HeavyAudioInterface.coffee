@@ -3,7 +3,9 @@ AudioInterface = require "./AudioInterface.coffee"
 
 # should be of the form { id : [some id], url : [complete URL]}
 SAMPLE_LIST = [
-	{ id:"3DTI-intro", url:"audio/3DTI-intro.mp3" }
+	{ id:"3DTI-intro-pt1", url:"audio/3DTI-intro-pt1-mono.mp3" },
+	{ id:"3DTI-intro-pt2", url:"audio/3DTI-intro-pt2-mono.mp3" },
+	{ id:"cafe-chat", url:"audio/cafe-chat.mp3" }
 ]
 
 
@@ -109,10 +111,14 @@ class HeavyAudioInterface extends AudioInterface
 		@emit "loadProgress", sampleLoadProgress
 
 	_sendCurrentToHeavy:(buffer)=>
-		table = @patch.getTableForName(@currentSample.id + "-1")
-		table.setBufferWithData(buffer.getChannelData(0))
-		table = @patch.getTableForName(@currentSample.id + "-2")
-		table.setBufferWithData(buffer.getChannelData(1))
+		if buffer.numberOfChannels == 2
+			table = @patch.getTableForName(@currentSample.id + "-1")
+			table.setBufferWithData(buffer.getChannelData(0))
+			table = @patch.getTableForName(@currentSample.id + "-2")
+			table.setBufferWithData(buffer.getChannelData(1))
+		else
+			table = @patch.getTableForName(@currentSample.id)
+			table.setBufferWithData(buffer.getChannelData(0))
 
 	_convertSample:(buffer, callback)=>
 		console.log "Resampling #{@currentSample.id} from #{buffer.sampleRate} to #{@context.sampleRate}"
