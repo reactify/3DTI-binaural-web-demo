@@ -12,6 +12,7 @@ PhoneController = require "../mobile/PhoneController.coffee"
 
 DebugView = require "../debug/DebugView.coffee"
 MapView = require "../mapView/MapView.coffee"
+HearingAidSelectUI = require "../ui/HearingAidSelectUI.coffee"
 
 IntroPage = require "../pages/IntroPage.coffee"
 
@@ -27,6 +28,9 @@ class TuneInApp
 		@scene = new MuseumScene()
 
 		@map = new MapView($("map"))
+		@vhaSelect = new HearingAidSelectUI($("vhaSelect"))
+
+
 		@audio = new HeavyAudioInterface(testLib)
 		Main.audio = @audio
 
@@ -49,6 +53,9 @@ class TuneInApp
 	onSceneLoaded:()=>
 
 		@map.init(@scene.mapData)
+		@vhaSelect.init()
+		@vhaSelect.on "select", @onVHAChange
+
 		@scene.on "userPosition", @onUserPositionChange
 		@scene.on "userAngle", @onUserAngleChange
 
@@ -135,6 +142,9 @@ class TuneInApp
 		angle = angle % 360
 		if angle < 0 then angle += 360
 		@audio.sendFloat "listener-direction", angle
+
+	onVHAChange:(which)=>
+		@audio.sendFloat "vha-setting", which
 
 	render:()=>
 
