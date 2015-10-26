@@ -3,7 +3,7 @@ AudioInterface = require "./AudioInterface.coffee"
 
 # should be of the form { id : [some id], url : [complete URL]}
 SAMPLE_LIST = [
-
+	{ id:"3DTI-intro", url:"audio/3DTI-intro.mp3" }
 ]
 
 
