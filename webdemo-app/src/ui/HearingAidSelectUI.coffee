@@ -1,6 +1,19 @@
 EventEmitter = require("events").EventEmitter
 
 
+VHA_DESCRIPTION = {
+	0 : "VHA type 0"
+	1 : "VHA type 1"
+	2 : "VHA type 2"
+	3 : "VHA type 3"
+	4 : "VHA type 4"
+	5 : "VHA type 5"
+	6 : "VHA type 6"
+	7 : "VHA type 7"
+	8 : "VHA type 8"
+	9 : "VHA type 9"
+}
+
 class HearingAidSelectUI extends EventEmitter
 	constructor:(@container)->
 
@@ -30,14 +43,23 @@ class HearingAidSelectUI extends EventEmitter
 		console.log "Selected VHA #{which}"
 		@emit "select", which
 
-		@message.innerHTML = "Virtual Hearing Aid setting: #{which}"
+		description = ""
+		if VHA_DESCRIPTION[which]
+			description = VHA_DESCRIPTION[which]
 
-		@message.classList.add "visible"
+			@message.innerHTML = "Virtual Hearing Aid setting: #{description}"
 
-		clearTimeout @hideTimeoutId
-		@hideTimeoutId = setTimeout(()=>
-			@message.classList.remove "visible"
-		,2000)
+			@message.classList.add "visible"
+
+			clearTimeout @hideTimeoutId
+			@hideTimeoutId = setTimeout(()=>
+				@message.classList.remove "visible"
+			,2000)
+		else
+			console.warn "Could not find description for VHA no #{which}"
+
+
+
 
 
 
