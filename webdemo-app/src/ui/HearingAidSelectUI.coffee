@@ -2,16 +2,16 @@ EventEmitter = require("events").EventEmitter
 
 
 VHA_DESCRIPTION = {
-	0 : "VHA type 0"
-	1 : "VHA type 1"
-	2 : "VHA type 2"
-	3 : "VHA type 3"
-	4 : "VHA type 4"
-	5 : "VHA type 5"
-	6 : "VHA type 6"
-	7 : "VHA type 7"
-	8 : "VHA type 8"
-	9 : "VHA type 9"
+	0 : "No filter"
+	1 : "Low-pass filter"
+	2 : "High-pass filter"
+	3 : "Directionality: Off"
+	4 : "Directionality: 1"
+	5 : "Directionality: 2"
+	6 : "Directionality: 3"
+	7 : "Directionality: 4"
+	8 : "Directionality: 5"
+	9 : "Directionality: 6"
 }
 
 class HearingAidSelectUI extends EventEmitter
