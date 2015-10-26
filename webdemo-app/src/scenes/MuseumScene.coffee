@@ -10,6 +10,8 @@ LOOKSPEED = 0.075
 
 REPORT_INTERVAL = 200
 
+SWAGGER_ENABLED = true
+
 
 class MuseumScene extends Scene
 	constructor:()->
@@ -28,6 +30,9 @@ class MuseumScene extends Scene
 
 		@velocity = new THREE.Vector3()
 		@phoneLookVelocity = new THREE.Vector3()
+		@swaggerVelocity = new THREE.Vector3()
+		@swaggerCount = 0
+		@swaggerAmount = 0
 			
 		@controls = new THREE.PointerLockControls(@camera)
 		@scene.add @controls.getObject()
@@ -49,7 +54,7 @@ class MuseumScene extends Scene
 		super
 
 		# add atmospherics
-		@scene.fog = new THREE.Fog(0xffffff, 10, 20000)
+		@scene.fog = new THREE.Fog(0xc0c0c0, 10, 10000)
 
 
 		# load map from JSON file
@@ -95,12 +100,12 @@ class MuseumScene extends Scene
 		@texLoader.load(
 			"images/metal2_normal.jpg",
 			(texture)=>
-				texture.repeat.x = 100
-				texture.repeat.y = 100
+				texture.repeat.x = 200
+				texture.repeat.y = 200
 				texture.wrapS = THREE.RepeatWrapping
 				texture.wrapT = THREE.RepeatWrapping
 				texture.needsUpdate = true
-				@floorMaterial = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, ambient: 0xaaaaaa, specular: 0xaaaaaa, perPixel: true, vertexColors: THREE.FaceColors, bumpMap : texture } )
+				@floorMaterial = new THREE.MeshPhongMaterial( { color: 0xafafaf, ambient: 0xaaaaaa, specular: 0x8a8a8a, perPixel: true, vertexColors: THREE.FaceColors, bumpMap : texture } )
 			)
 
 		@texLoader.load(
@@ -233,7 +238,7 @@ class MuseumScene extends Scene
 						@ceilingMerged.merge(newCeilingTile.geometry, newCeilingTile.matrix)
 						# @scene.add newCeilingTile
 
-				@ceilingMesh = new THREE.Mesh(@ceilingMerged, materialGround1)
+				@ceilingMesh = new THREE.Mesh(@ceilingMerged,  @wallMaterial)
 				@scene.add @ceilingMesh
 
 				callback()
@@ -241,14 +246,17 @@ class MuseumScene extends Scene
 			)
 
 		# add lighting
-		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.8)
-		# lightHemi.castShadow = true
+		lightHemi = new THREE.HemisphereLight(0xffffff, 0x676767, 0.4)
+		# # lightHemi.castShadow = true
 		@scene.add lightHemi
 
+		lightAmbient = new THREE.AmbientLight(0x808080)
+		@scene.add lightAmbient
+
 		light1 = new THREE.DirectionalLight(0x676767, 0.1)
-		light1.position.set(@mapWidth/2 * UNITSIZE,0,@mapWidth/2 * UNITSIZE)
+		light1.position.set(@mapWidth/2 * UNITSIZE,WALLHEIGHT,@mapWidth/2 * UNITSIZE)
 		light1.lookAt(new THREE.Vector3(@mapWidth/2 * -UNITSIZE,0,@mapWidth/2 * -UNITSIZE))
-		light1.castShadow = true
+		# light1.castShadow = true
 		# light1.onlyShadow = true
 		@scene.add light1
 
@@ -328,6 +336,18 @@ class MuseumScene extends Scene
 		@velocity.x *= 0.9
 		@velocity.z *= 0.9
 
+		@swaggerCount += 0.1
+		# @swaggerCount = @swaggerCount % (Math.PI * 2)
+
+		@swaggerAmount *= 0.9
+		
+
+		if @moving.forward or @moving.backward or @moving.left or @moving.right
+			@swaggerAmount = 1.0
+
+		@swaggerVelocity.x = Math.sin(@swaggerCount)
+		@swaggerVelocity.y = Math.cos(@swaggerCount)
+
 		# keyboard control
 
 		if @moving.backward
@@ -370,7 +390,15 @@ class MuseumScene extends Scene
 			@wallColliding = false
 
 		@controls.getObject().translateX(@velocity.x * 0.1)
+		
+		@controls.getObject().translateX(@velocity.x * 0.1)
+		
 		@controls.getObject().translateZ(@velocity.z * 0.1)
+		
+		if SWAGGER_ENABLED
+			@controls.getObject().position.y =  WALLHEIGHT/2 - (Math.abs(@swaggerVelocity.y) * 15 * @swaggerAmount)
+			@controls.getObject().position.x += (@swaggerVelocity.x * 0.2 * @swaggerAmount)
+			@controls.getObject().position.z += (@swaggerVelocity.x * 0.2 * @swaggerAmount)
 
 		# check if we need to report the position
 		time = Date.now()
