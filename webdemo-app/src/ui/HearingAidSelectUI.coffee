@@ -22,6 +22,7 @@ class HearingAidSelectUI extends EventEmitter
 				when 55 then @selectVHA(7)
 				when 56 then @selectVHA(8)
 				when 57 then @selectVHA(9)
+				when 48 then @selectVHA(0)
 
 
 
