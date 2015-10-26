@@ -309,6 +309,7 @@ class MuseumScene extends Scene
 		console.log "step from phone : #{stepSize}"
 		@velocity.z += SPEED_STEP * stepSize * 100
 		@velocity.z = Math.min @velocity.z, -MAX_VELOCITY
+		@swaggerAmount = 1.0
 
 	onPhoneStrafe:(direction)=>
 		console.log "strafe from phone : #{direction}"
@@ -318,6 +319,8 @@ class MuseumScene extends Scene
 		else
 			@velocity.x -= -SPEED_STEP * 100
 			@velocity.x = Math.min @velocity.x, -MAX_VELOCITY
+
+		@swaggerAmount = 1.0
 
 	onPhoneLook:(lookData)=>
 
@@ -394,7 +397,7 @@ class MuseumScene extends Scene
 		@controls.getObject().translateX(@velocity.x * 0.1)
 		
 		@controls.getObject().translateZ(@velocity.z * 0.1)
-		
+
 		if SWAGGER_ENABLED
 			@controls.getObject().position.y =  WALLHEIGHT/2 - (Math.abs(@swaggerVelocity.y) * 15 * @swaggerAmount)
 			@controls.getObject().position.x += (@swaggerVelocity.x * 0.2 * @swaggerAmount)
