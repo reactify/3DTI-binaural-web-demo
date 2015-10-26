@@ -8,6 +8,7 @@ SPEED_STEP = 2
 MAX_VELOCITY = 300
 LOOKSPEED = 0.075
 
+REPORT_INTERVAL = 200
 
 
 class MuseumScene extends Scene
@@ -40,6 +41,7 @@ class MuseumScene extends Scene
 
 		@reportPositionId = -1
 
+		@lastReportTime = Date.now()
 		@lastPosition = null
 		@lastAngle = null
 
@@ -257,8 +259,6 @@ class MuseumScene extends Scene
 
 	enableControls:()=>
 		@controls.enabled = true
-		@reportPositionId = setInterval(@reportUserPosition, 100)
-				
 
 	onKeyDown:(e)=>
 		switch(e.keyCode)
@@ -372,6 +372,12 @@ class MuseumScene extends Scene
 		@controls.getObject().translateX(@velocity.x * 0.1)
 		@controls.getObject().translateZ(@velocity.z * 0.1)
 
+		# check if we need to report the position
+		time = Date.now()
+		if ((time - @lastReportTime) > REPORT_INTERVAL)
+			@lastReportTime = time
+			@reportUserPosition()
+
 	reportUserPosition:()=>
 		positionX = ((@controls.getObject().position.x / UNITSIZE) + @mapWidth/2) / @mapWidth
 		positionZ = ((@controls.getObject().position.z / UNITSIZE) + @mapHeight/2) / @mapHeight
@@ -379,7 +385,7 @@ class MuseumScene extends Scene
 
 		if @lastPosition
 			# only report position change if delta has changed significantly
-			if (Math.abs(@lastPosition.x - positionX) > 0.01) or (Math.abs(@lastPosition.z - positionZ) > 0.01)
+			if (Math.abs(@lastPosition.x - positionX) > 0.01) or (Math.abs(@lastPosition.y - positionZ) > 0.01)
 				@lastPosition = { x : positionX, y : positionZ }
 				@emit "userPosition", @lastPosition
 				
