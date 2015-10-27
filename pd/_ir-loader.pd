@@ -1,4 +1,4 @@
-#N canvas 1370 444 408 406 10;
+#N canvas 645 141 410 395 10;
 #X obj 35 56 unpack f f f;
 #X obj 80 135 moses 100;
 #X obj 35 114 moses 10;
