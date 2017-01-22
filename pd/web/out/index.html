@@ -51,24 +51,45 @@
         isPlaying = false;
 
         // Generated Parameter Display Initialisations
-        updateSlider_pwmfreq(0.5);
+        updateSlider_397startfreq(0.5);
         updateSlider_5vol(0.5);
+        updateSlider_815startfreq(0.5);
+        updateSlider_sweep(0.5);
+        updateSlider_625startfreq(0.5);
+        updateSlider_853startfreq(0.5);
+        updateSlider_3vol(0.5);
+        updateSlider_pwmfreq(0.5);
         updateSlider_pwmamt(0.5);
+        updateSlider_4vol(0.5);
+        updateSlider_totalabove0(0.5);
+        updateSlider_511startfreq(0.5);
+        updateSlider_701startfreq(0.5);
+        updateSlider_549startfreq(0.5);
+        updateSlider_kick(0.5);
         updateSlider_2vol(0.5);
         updateSlider_1vol(0.5);
-        updateSlider_4vol(0.5);
-        updateSlider_hh(0.5);
         updateSlider_transpose(0.5);
-        updateSlider_0vol(0.5);
+        updateSlider_bashphase(0.5);
+        updateSlider_hh(0.5);
+        updateSlider_473startfreq(0.5);
+        updateSlider_walkspeed(0.5);
+        updateSlider_active(0.5);
+        updateSlider_663startfreq(0.5);
+        updateSlider_FREQ(0.5);
+        updateSlider_listenery(0.5);
         updateSlider_listenerx(0.5);
-        updateSlider_totalabove0(0.5);
+        updateSlider_929startfreq(0.5);
+        updateSlider_tick1(0.5);
+        updateSlider_positions(0.5);
+        updateSlider_587startfreq(0.5);
+        updateSlider_0vol(0.5);
         updateSlider_voice0(0.5);
         updateSlider_voice1(0.5);
-        updateSlider_positions(0.5);
-        updateSlider_3vol(0.5);
-        updateSlider_listenery(0.5);
+        updateSlider_739startfreq(0.5);
+        updateSlider_435startfreq(0.5);
         updateSlider_listenerdirection(0.5);
-        updateSlider_kick(0.5);
+        updateSlider_777startfreq(0.5);
+        updateSlider_891startfreq(0.5);
       };
 
       function hvPrintHook(message) {
@@ -97,9 +118,9 @@
 
       // Generated Parameter Update Methods
       
-      function updateSlider_pwmfreq(value) {
-        document.getElementById("display_pwmfreq").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("pwm-freq", value);
+      function updateSlider_397startfreq(value) {
+        document.getElementById("display_397startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("397-start-freq", value);
       };
       
       function updateSlider_5vol(value) {
@@ -107,9 +128,69 @@
         test.sendFloatToReceiver("5-vol", value);
       };
       
+      function updateSlider_815startfreq(value) {
+        document.getElementById("display_815startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("815-start-freq", value);
+      };
+      
+      function updateSlider_sweep(value) {
+        document.getElementById("display_sweep").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("sweep", value);
+      };
+      
+      function updateSlider_625startfreq(value) {
+        document.getElementById("display_625startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("625-start-freq", value);
+      };
+      
+      function updateSlider_853startfreq(value) {
+        document.getElementById("display_853startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("853-start-freq", value);
+      };
+      
+      function updateSlider_3vol(value) {
+        document.getElementById("display_3vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("3-vol", value);
+      };
+      
+      function updateSlider_pwmfreq(value) {
+        document.getElementById("display_pwmfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("pwm-freq", value);
+      };
+      
       function updateSlider_pwmamt(value) {
         document.getElementById("display_pwmamt").textContent = Number(value).toFixed(2);
         test.sendFloatToReceiver("pwm-amt", value);
+      };
+      
+      function updateSlider_4vol(value) {
+        document.getElementById("display_4vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("4-vol", value);
+      };
+      
+      function updateSlider_totalabove0(value) {
+        document.getElementById("display_totalabove0").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("total-above-0", value);
+      };
+      
+      function updateSlider_511startfreq(value) {
+        document.getElementById("display_511startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("511-start-freq", value);
+      };
+      
+      function updateSlider_701startfreq(value) {
+        document.getElementById("display_701startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("701-start-freq", value);
+      };
+      
+      function updateSlider_549startfreq(value) {
+        document.getElementById("display_549startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("549-start-freq", value);
+      };
+      
+      function updateSlider_kick(value) {
+        document.getElementById("display_kick").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("kick", value);
       };
       
       function updateSlider_2vol(value) {
@@ -122,9 +203,14 @@
         test.sendFloatToReceiver("1-vol", value);
       };
       
-      function updateSlider_4vol(value) {
-        document.getElementById("display_4vol").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("4-vol", value);
+      function updateSlider_transpose(value) {
+        document.getElementById("display_transpose").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("transpose", value);
+      };
+      
+      function updateSlider_bashphase(value) {
+        document.getElementById("display_bashphase").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("bashphase", value);
       };
       
       function updateSlider_hh(value) {
@@ -132,14 +218,34 @@
         test.sendFloatToReceiver("hh", value);
       };
       
-      function updateSlider_transpose(value) {
-        document.getElementById("display_transpose").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("transpose", value);
+      function updateSlider_473startfreq(value) {
+        document.getElementById("display_473startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("473-start-freq", value);
       };
       
-      function updateSlider_0vol(value) {
-        document.getElementById("display_0vol").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("0-vol", value);
+      function updateSlider_walkspeed(value) {
+        document.getElementById("display_walkspeed").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("walkspeed", value);
+      };
+      
+      function updateSlider_active(value) {
+        document.getElementById("display_active").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("active", value);
+      };
+      
+      function updateSlider_663startfreq(value) {
+        document.getElementById("display_663startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("663-start-freq", value);
+      };
+      
+      function updateSlider_FREQ(value) {
+        document.getElementById("display_FREQ").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("FREQ", value);
+      };
+      
+      function updateSlider_listenery(value) {
+        document.getElementById("display_listenery").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("listener-y", value);
       };
       
       function updateSlider_listenerx(value) {
@@ -147,9 +253,29 @@
         test.sendFloatToReceiver("listener-x", value);
       };
       
-      function updateSlider_totalabove0(value) {
-        document.getElementById("display_totalabove0").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("total-above-0", value);
+      function updateSlider_929startfreq(value) {
+        document.getElementById("display_929startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("929-start-freq", value);
+      };
+      
+      function updateSlider_tick1(value) {
+        document.getElementById("display_tick1").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("tick-1", value);
+      };
+      
+      function updateSlider_positions(value) {
+        document.getElementById("display_positions").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("positions", value);
+      };
+      
+      function updateSlider_587startfreq(value) {
+        document.getElementById("display_587startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("587-start-freq", value);
+      };
+      
+      function updateSlider_0vol(value) {
+        document.getElementById("display_0vol").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("0-vol", value);
       };
       
       function updateSlider_voice0(value) {
@@ -162,19 +288,14 @@
         test.sendFloatToReceiver("voice-1", value);
       };
       
-      function updateSlider_positions(value) {
-        document.getElementById("display_positions").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("positions", value);
+      function updateSlider_739startfreq(value) {
+        document.getElementById("display_739startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("739-start-freq", value);
       };
       
-      function updateSlider_3vol(value) {
-        document.getElementById("display_3vol").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("3-vol", value);
-      };
-      
-      function updateSlider_listenery(value) {
-        document.getElementById("display_listenery").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("listener-y", value);
+      function updateSlider_435startfreq(value) {
+        document.getElementById("display_435startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("435-start-freq", value);
       };
       
       function updateSlider_listenerdirection(value) {
@@ -182,9 +303,14 @@
         test.sendFloatToReceiver("listener-direction", value);
       };
       
-      function updateSlider_kick(value) {
-        document.getElementById("display_kick").textContent = Number(value).toFixed(2);
-        test.sendFloatToReceiver("kick", value);
+      function updateSlider_777startfreq(value) {
+        document.getElementById("display_777startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("777-start-freq", value);
+      };
+      
+      function updateSlider_891startfreq(value) {
+        document.getElementById("display_891startfreq").textContent = Number(value).toFixed(2);
+        test.sendFloatToReceiver("891-start-freq", value);
       };
       
     </script>
@@ -201,10 +327,10 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_pwmfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmfreq(value);" oninput="updateSlider_pwmfreq(value)">
+            <input id="slider_397startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_397startfreq(value);" oninput="updateSlider_397startfreq(value)">
           </div>
-          <div class="cell" id="display_pwmfreq"></div>
-          <div class="cell"><strong>pwm-freq</strong></div>
+          <div class="cell" id="display_397startfreq"></div>
+          <div class="cell"><strong>397-start-freq</strong></div>
         </div>
         
         <div class="row">
@@ -217,10 +343,106 @@
         
         <div class="row">
           <div class="cell">
+            <input id="slider_815startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_815startfreq(value);" oninput="updateSlider_815startfreq(value)">
+          </div>
+          <div class="cell" id="display_815startfreq"></div>
+          <div class="cell"><strong>815-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_sweep" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_sweep(value);" oninput="updateSlider_sweep(value)">
+          </div>
+          <div class="cell" id="display_sweep"></div>
+          <div class="cell"><strong>sweep</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_625startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_625startfreq(value);" oninput="updateSlider_625startfreq(value)">
+          </div>
+          <div class="cell" id="display_625startfreq"></div>
+          <div class="cell"><strong>625-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_853startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_853startfreq(value);" oninput="updateSlider_853startfreq(value)">
+          </div>
+          <div class="cell" id="display_853startfreq"></div>
+          <div class="cell"><strong>853-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_3vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_3vol(value);" oninput="updateSlider_3vol(value)">
+          </div>
+          <div class="cell" id="display_3vol"></div>
+          <div class="cell"><strong>3-vol</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_pwmfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmfreq(value);" oninput="updateSlider_pwmfreq(value)">
+          </div>
+          <div class="cell" id="display_pwmfreq"></div>
+          <div class="cell"><strong>pwm-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
             <input id="slider_pwmamt" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_pwmamt(value);" oninput="updateSlider_pwmamt(value)">
           </div>
           <div class="cell" id="display_pwmamt"></div>
           <div class="cell"><strong>pwm-amt</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_4vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_4vol(value);" oninput="updateSlider_4vol(value)">
+          </div>
+          <div class="cell" id="display_4vol"></div>
+          <div class="cell"><strong>4-vol</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_totalabove0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_totalabove0(value);" oninput="updateSlider_totalabove0(value)">
+          </div>
+          <div class="cell" id="display_totalabove0"></div>
+          <div class="cell"><strong>total-above-0</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_511startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_511startfreq(value);" oninput="updateSlider_511startfreq(value)">
+          </div>
+          <div class="cell" id="display_511startfreq"></div>
+          <div class="cell"><strong>511-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_701startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_701startfreq(value);" oninput="updateSlider_701startfreq(value)">
+          </div>
+          <div class="cell" id="display_701startfreq"></div>
+          <div class="cell"><strong>701-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_549startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_549startfreq(value);" oninput="updateSlider_549startfreq(value)">
+          </div>
+          <div class="cell" id="display_549startfreq"></div>
+          <div class="cell"><strong>549-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_kick" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_kick(value);" oninput="updateSlider_kick(value)">
+          </div>
+          <div class="cell" id="display_kick"></div>
+          <div class="cell"><strong>kick</strong></div>
         </div>
         
         <div class="row">
@@ -241,10 +463,18 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_4vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_4vol(value);" oninput="updateSlider_4vol(value)">
+            <input id="slider_transpose" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_transpose(value);" oninput="updateSlider_transpose(value)">
           </div>
-          <div class="cell" id="display_4vol"></div>
-          <div class="cell"><strong>4-vol</strong></div>
+          <div class="cell" id="display_transpose"></div>
+          <div class="cell"><strong>transpose</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_bashphase" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_bashphase(value);" oninput="updateSlider_bashphase(value)">
+          </div>
+          <div class="cell" id="display_bashphase"></div>
+          <div class="cell"><strong>bashphase</strong></div>
         </div>
         
         <div class="row">
@@ -257,18 +487,50 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_transpose" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_transpose(value);" oninput="updateSlider_transpose(value)">
+            <input id="slider_473startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_473startfreq(value);" oninput="updateSlider_473startfreq(value)">
           </div>
-          <div class="cell" id="display_transpose"></div>
-          <div class="cell"><strong>transpose</strong></div>
+          <div class="cell" id="display_473startfreq"></div>
+          <div class="cell"><strong>473-start-freq</strong></div>
         </div>
         
         <div class="row">
           <div class="cell">
-            <input id="slider_0vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_0vol(value);" oninput="updateSlider_0vol(value)">
+            <input id="slider_walkspeed" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_walkspeed(value);" oninput="updateSlider_walkspeed(value)">
           </div>
-          <div class="cell" id="display_0vol"></div>
-          <div class="cell"><strong>0-vol</strong></div>
+          <div class="cell" id="display_walkspeed"></div>
+          <div class="cell"><strong>walkspeed</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_active" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_active(value);" oninput="updateSlider_active(value)">
+          </div>
+          <div class="cell" id="display_active"></div>
+          <div class="cell"><strong>active</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_663startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_663startfreq(value);" oninput="updateSlider_663startfreq(value)">
+          </div>
+          <div class="cell" id="display_663startfreq"></div>
+          <div class="cell"><strong>663-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_FREQ" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_FREQ(value);" oninput="updateSlider_FREQ(value)">
+          </div>
+          <div class="cell" id="display_FREQ"></div>
+          <div class="cell"><strong>FREQ</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_listenery" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenery(value);" oninput="updateSlider_listenery(value)">
+          </div>
+          <div class="cell" id="display_listenery"></div>
+          <div class="cell"><strong>listener-y</strong></div>
         </div>
         
         <div class="row">
@@ -281,10 +543,42 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_totalabove0" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_totalabove0(value);" oninput="updateSlider_totalabove0(value)">
+            <input id="slider_929startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_929startfreq(value);" oninput="updateSlider_929startfreq(value)">
           </div>
-          <div class="cell" id="display_totalabove0"></div>
-          <div class="cell"><strong>total-above-0</strong></div>
+          <div class="cell" id="display_929startfreq"></div>
+          <div class="cell"><strong>929-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_tick1" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_tick1(value);" oninput="updateSlider_tick1(value)">
+          </div>
+          <div class="cell" id="display_tick1"></div>
+          <div class="cell"><strong>tick-1</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_positions" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_positions(value);" oninput="updateSlider_positions(value)">
+          </div>
+          <div class="cell" id="display_positions"></div>
+          <div class="cell"><strong>positions</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_587startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_587startfreq(value);" oninput="updateSlider_587startfreq(value)">
+          </div>
+          <div class="cell" id="display_587startfreq"></div>
+          <div class="cell"><strong>587-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_0vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_0vol(value);" oninput="updateSlider_0vol(value)">
+          </div>
+          <div class="cell" id="display_0vol"></div>
+          <div class="cell"><strong>0-vol</strong></div>
         </div>
         
         <div class="row">
@@ -305,26 +599,18 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_positions" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_positions(value);" oninput="updateSlider_positions(value)">
+            <input id="slider_739startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_739startfreq(value);" oninput="updateSlider_739startfreq(value)">
           </div>
-          <div class="cell" id="display_positions"></div>
-          <div class="cell"><strong>positions</strong></div>
+          <div class="cell" id="display_739startfreq"></div>
+          <div class="cell"><strong>739-start-freq</strong></div>
         </div>
         
         <div class="row">
           <div class="cell">
-            <input id="slider_3vol" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_3vol(value);" oninput="updateSlider_3vol(value)">
+            <input id="slider_435startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_435startfreq(value);" oninput="updateSlider_435startfreq(value)">
           </div>
-          <div class="cell" id="display_3vol"></div>
-          <div class="cell"><strong>3-vol</strong></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell">
-            <input id="slider_listenery" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_listenery(value);" oninput="updateSlider_listenery(value)">
-          </div>
-          <div class="cell" id="display_listenery"></div>
-          <div class="cell"><strong>listener-y</strong></div>
+          <div class="cell" id="display_435startfreq"></div>
+          <div class="cell"><strong>435-start-freq</strong></div>
         </div>
         
         <div class="row">
@@ -337,10 +623,18 @@
         
         <div class="row">
           <div class="cell">
-            <input id="slider_kick" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_kick(value);" oninput="updateSlider_kick(value)">
+            <input id="slider_777startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_777startfreq(value);" oninput="updateSlider_777startfreq(value)">
           </div>
-          <div class="cell" id="display_kick"></div>
-          <div class="cell"><strong>kick</strong></div>
+          <div class="cell" id="display_777startfreq"></div>
+          <div class="cell"><strong>777-start-freq</strong></div>
+        </div>
+        
+        <div class="row">
+          <div class="cell">
+            <input id="slider_891startfreq" type="range" min="0" max="1" step="0.01" value="0.5" onchange="updateSlider_891startfreq(value);" oninput="updateSlider_891startfreq(value)">
+          </div>
+          <div class="cell" id="display_891startfreq"></div>
+          <div class="cell"><strong>891-start-freq</strong></div>
         </div>
         
       </div>

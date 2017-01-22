@@ -29,5 +29,10 @@ class AudioInterface extends EventEmitter
 		# send float to given inlet
 
 
+	sendString:(inlet, value)->
+
+		# send string to given inlet
+
+
 
 module.exports = AudioInterface

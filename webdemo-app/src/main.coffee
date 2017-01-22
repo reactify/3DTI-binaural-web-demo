@@ -57,6 +57,7 @@ Main = new ->
 		init: init
 		getQueryParams : getQueryParams
 		audio : audio
+		app : app
 	}
 
 # globals

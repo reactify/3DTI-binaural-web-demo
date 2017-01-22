@@ -1,0 +1,15 @@
+#N canvas 260 133 390 214 10;
+#X obj 59 37 table \$1_P000-1 512;
+#X obj 59 57 table \$1_P015-1 512;
+#X obj 59 77 table \$1_P030-1 512;
+#X obj 59 97 table \$1_P045-1 512;
+#X obj 59 117 table \$1_P315-1 512;
+#X obj 59 137 table \$1_P330-1 512;
+#X obj 59 157 table \$1_P345-1 512;
+#X obj 199 37 table \$1_P000-2 512;
+#X obj 199 57 table \$1_P015-2 512;
+#X obj 199 77 table \$1_P030-2 512;
+#X obj 199 97 table \$1_P045-2 512;
+#X obj 199 117 table \$1_P315-2 512;
+#X obj 199 137 table \$1_P330-2 512;
+#X obj 199 157 table \$1_P345-2 512;

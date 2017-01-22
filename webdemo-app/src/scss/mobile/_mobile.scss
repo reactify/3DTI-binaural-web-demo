@@ -1,4 +1,6 @@
 .mobile {
+
+	overflow: hidden;
 	
 	background: linear-gradient(to bottom, #ffaf4b 0%,#ff920a 100%);
 
@@ -34,6 +36,64 @@
 			width:80px;
 			height:80px;
 			border:1px solid red;
+		}
+
+		#controls {
+
+			.footController {
+				background-image:url("../images/footprint.svg");
+				background-size:50% auto;
+				background-repeat: no-repeat;
+				background-position: center center;
+
+
+
+				width:25%;
+				position: absolute;
+				top:0px;
+				height:100%;
+				&#leftFoot {
+					left:0px;
+					border-right:1px dashed white;
+				}
+				&#rightFoot {
+					right:0px;
+					border-left:1px dashed white;
+				}
+
+				&:hover, &:active {
+					background-color:transparentize(#ffaf4b, 0.1);
+				}
+			}
+
+			.lookController {
+				width:50%;
+				position: absolute;
+				height:100%;
+				top:0px;
+				left:25%;
+
+				background-image:url("../images/eye.svg");
+				background-size:50% auto;
+				background-repeat: no-repeat;
+				background-position: center center;
+
+				#lookIndicator {
+
+					display: none;
+
+					width:100px;
+					height:100px;
+					position: absolute;
+					top:50%;
+					left:50%;
+					transform:translate(-50%, -50%);
+					border-radius:50%;
+					border:1px solid white;
+				}
+			}
+
+			
 		}
 
 	}

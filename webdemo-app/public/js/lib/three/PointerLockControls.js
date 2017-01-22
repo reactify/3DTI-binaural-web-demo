@@ -47,6 +47,10 @@ THREE.PointerLockControls = function ( camera ) {
 
 	};
 
+	this.getPitchObject = function() {
+		return pitchObject
+	}
+
 	this.getDirection = function() {
 
 		// assumes the camera itself is not rotated

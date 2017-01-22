@@ -1,5 +1,6 @@
 
 Config = require "../config/Config.coffee"
+Utils = require "../utils/Utils.coffee"
 Renderer = require "../gfx/Renderer.coffee"
 
 HeavyAudioInterface = require "../heavy/HeavyAudioInterface.coffee"
@@ -7,8 +8,11 @@ HeavyAudioInterface = require "../heavy/HeavyAudioInterface.coffee"
 MuseumScene = require "../scenes/MuseumScene.coffee"
 # DisplaySocketHandler = require "../display/DisplaySocketHandler.coffee"
 
+PhoneController = require "../mobile/PhoneController.coffee"
+
 DebugView = require "../debug/DebugView.coffee"
 MapView = require "../mapView/MapView.coffee"
+HearingAidSelectUI = require "../ui/HearingAidSelectUI.coffee"
 
 IntroPage = require "../pages/IntroPage.coffee"
 
@@ -24,7 +28,11 @@ class TuneInApp
 		@scene = new MuseumScene()
 
 		@map = new MapView($("map"))
+		@vhaSelect = new HearingAidSelectUI($("vhaSelect"))
+
+
 		@audio = new HeavyAudioInterface(testLib)
+		Main.audio = @audio
 
 		@introPage = new IntroPage()
 
@@ -45,12 +53,21 @@ class TuneInApp
 	onSceneLoaded:()=>
 
 		@map.init(@scene.mapData)
+		@vhaSelect.init()
+		@vhaSelect.on "select", @onVHAChange
+
 		@scene.on "userPosition", @onUserPositionChange
 		@scene.on "userAngle", @onUserAngleChange
 
 		@audio.on "loaded", @onAudioLoaded
+		@audio.on "message", @onAudioMessage
 		@audio.init()
-		
+
+		@phoneInterface = new PhoneController()
+		@phoneInterface.init()
+		@phoneInterface.on "step", @scene.onPhoneStep
+		@phoneInterface.on "strafe", @scene.onPhoneStrafe
+		@phoneInterface.on "look", @scene.onPhoneLook
 
 	onAudioLoaded:()=>
 
@@ -70,6 +87,9 @@ class TuneInApp
 		@audio.sendFloat "kick", 0.5
 		@audio.sendFloat "note-0", 0.5
 
+
+		@audio.sendString "test", "test"
+
 		@audio.reset()
 		@renderer.init(@scene.scene, @scene.camera)
 		
@@ -84,8 +104,31 @@ class TuneInApp
 			
 		# 	@scene.enableControls()
 		# 	)
-		
-	
+
+
+	onAudioMessage:(data)=>
+		if data.address == "js-soundfiler"
+			# received instruction from PD to load a new IR
+			tableId = data.parts[4]
+			azimuth = data.parts[2]
+			elevation = data.parts[3]
+
+			tableId = tableId
+			azimuth = Utils.padZeros3(azimuth)
+			elevation = Utils.padZeros3(elevation)
+
+			url = "./audio/IRC_1018_C/IRC_1018_C_R0195_T#{azimuth}_P#{elevation}.wav"
+
+			concatString1 = "T#{azimuth}_P#{elevation}-1"
+			concatString2 = "T#{azimuth}_P#{elevation}-2"
+			receiver1 = "#{tableId}-conv-1"
+			receiver2 = "#{tableId}-conv-2"
+			@audio.sendString receiver1, concatString1
+			@audio.sendString receiver2, concatString2
+
+			# @audio.addSampleToQueue(tableId, url)
+			# @audio.loadNextAudio()
+
 	onUserPositionChange:(data)=>
 		@map.setUserPosition(data.x, data.y)
 		@audio.sendFloat "listener-x", data.x * 32
@@ -99,6 +142,9 @@ class TuneInApp
 		angle = angle % 360
 		if angle < 0 then angle += 360
 		@audio.sendFloat "listener-direction", angle
+
+	onVHAChange:(which)=>
+		@audio.sendFloat "vha-setting", which
 
 	render:()=>
 
